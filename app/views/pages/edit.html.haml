@@ -1,0 +1,12 @@
+%h1 Editing page
+
+= render 'form'
+
+%p
+  = link_to 'Show', @page
+  \|
+  = link_to 'Delete', @page, :confirm => 'Are you sure?', :method => :delete
+  \|
+  = link_to 'New Page', new_page_path
+  \|
+  = link_to 'List', pages_path

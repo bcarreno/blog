@@ -1,0 +1,20 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @article.title
+%p
+  %b Keywords:
+  = @article.keywords
+%p
+  %b Body:
+  = @article.body
+
+%p
+  = link_to 'Edit', edit_article_path(@article)
+  \|
+  = link_to 'Delete', @article, :confirm => 'Are you sure?', :method => :delete
+  \|
+  = link_to 'New Article', new_article_path
+  \|
+  = link_to 'List', articles_path

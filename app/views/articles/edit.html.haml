@@ -1,0 +1,12 @@
+%h1 Editing article
+
+= render 'form'
+
+%p
+  = link_to 'Show', @article
+  \|
+  = link_to 'Delete', @article, :confirm => 'Are you sure?', :method => :delete
+  \|
+  = link_to 'New Article', new_article_path
+  \|
+  = link_to 'List', articles_path
