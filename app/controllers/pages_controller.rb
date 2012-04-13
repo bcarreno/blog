@@ -37,11 +37,8 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
   end
 
-  # POST /pages
-  # POST /pages.json
   def create
     @page = Page.new(params[:page])
-
     respond_to do |format|
       if @page.save
         format.html { redirect_to @page, notice: 'Page was successfully created.' }
@@ -51,13 +48,11 @@ class PagesController < ApplicationController
         format.json { render json: @page.errors, status: :unprocessable_entity }
       end
     end
+    markup_to_html
   end
 
-  # PUT /pages/1
-  # PUT /pages/1.json
   def update
     @page = Page.find(params[:id])
-
     respond_to do |format|
       if @page.update_attributes(params[:page])
         format.html { redirect_to @page, notice: 'Page was successfully updated.' }
@@ -67,6 +62,7 @@ class PagesController < ApplicationController
         format.json { render json: @page.errors, status: :unprocessable_entity }
       end
     end
+    markup_to_html
   end
 
   # DELETE /pages/1
@@ -79,5 +75,14 @@ class PagesController < ApplicationController
       format.html { redirect_to pages_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def markup_to_html
+    command = "pandoc -o /tmp/pandoc_tmp.html"
+    IO.popen(command, 'w') {|pipe| pipe.puts @page.markup }
+    @page.html = File.read("/tmp/pandoc_tmp.html")
+    @page.save
   end
 end

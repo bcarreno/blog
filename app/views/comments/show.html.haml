@@ -1,0 +1,23 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @comment.name
+%p
+  %b Email:
+  = @comment.email
+%p
+  %b Body:
+  = @comment.body
+%p
+  %b Article:
+  = @comment.article_id
+
+%p
+  = link_to 'Edit', edit_comment_path(@comment)
+  \|
+  = link_to 'Delete', @comment, :confirm => 'Are you sure?', :method => :delete
+  \|
+  = link_to 'New Comment', new_comment_path
+  \|
+  = link_to 'List', comments_path

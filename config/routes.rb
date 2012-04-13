@@ -1,7 +1,12 @@
 Blog4::Application.routes.draw do
+  get "sandbox/index"
   resources :pages
   resources :articles
-  root :to => 'pages#index'
+    resources :comments, :except => :show do
+		  get 'confirm_destroy', :on => :member
+    end
+
+  root :to => 'articles#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
