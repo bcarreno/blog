@@ -1,20 +1,41 @@
-%p#notice= notice
-
+- title @article.title
 %p
-  %b Title:
-  = @article.title
+  -# ~ preserves whitespace for <pre>
+  ~ markdown(@article.body)
 %p
-  %b Keywords:
-  = @article.keywords
-%p
-  %b Body:
-  = @article.body
-
+  Categories: #{@article.keywords}
 %p
   = link_to 'Edit', edit_article_path(@article)
   \|
-  = link_to 'Delete', @article, :confirm => 'Are you sure?', :method => :delete
+  = link_to 'Destroy', @article, :confirm => 'Are you sure?', :method => :delete
   \|
-  = link_to 'New Article', new_article_path
+  = link_to 'New article', new_article_path
   \|
-  = link_to 'List', articles_path
+  = link_to 'List articles', articles_path
+
+%h3#comments_count
+  = link_to pluralize(@article.comments.size, 'comment'), article_url(@article, :anchor => 'comments')
+
+#comments
+  %a{:id => 'comments', :name => 'comments'}
+  = render :partial => @article.comments
+
+%h3 Add a Comment
+
+-# Array is needed for nested resources
+-# NOTE we don't build a new comment attached to @article, i.e. we don't modify the collection @article.comments
+-#      this what Steve Klabnik talks here: https://gist.github.com/2379785
+= form_for [@article, Comment.new({:article => @article}, :without_protection => true)] do |f|
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :email
+    %br
+    = f.text_field :email
+  %p
+    = f.label :body
+    %br
+    = f.text_area :body, :size => '70x20'
+  %p= f.submit "Add Comment"

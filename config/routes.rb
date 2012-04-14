@@ -1,10 +1,9 @@
 Blog4::Application.routes.draw do
   get "sandbox/index"
   resources :pages
-  resources :articles
-    resources :comments, :except => :show do
-		  get 'confirm_destroy', :on => :member
-    end
+  resources :articles do
+    resources :comments
+  end
 
   root :to => 'articles#index'
 
