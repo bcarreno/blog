@@ -1,9 +1,37 @@
 module ApplicationHelper
-  def markdown(text)
-    rndr = Redcarpet::Render::HTML.new(:hard_wrap => true)
-    md = Redcarpet::Markdown.new(rndr)
-    md.render text
+  class HTMLwithAlbino < Redcarpet::Render::HTML
+    def block_code(code, language)
+      Albino.colorize(code, language)
+    end
   end
+
+  def markdown(text)
+    rndrAlbino = HTMLwithAlbino.new
+    rndr = Redcarpet::Render::HTML.new(:hard_wrap => true)
+    options = {:fenced_code_blocks => true,
+               :tables => true,
+               :autolink => true,
+               :strikethrough => true,
+               :lax_html_blocks => true,
+               :superscript => true}
+    md = Redcarpet::Markdown.new(rndrAlbino, options)
+    xx = md.render(text)
+		#syntax_highlighter(xx)
+  end
+
+=begin
+<pre lang="ruby"><code>puts .....</code></pre>
+<pre><code class="ruby">puts ....</code></pre>
+=end
+
+ 	def syntax_highlighter(html)
+ 		#     Nokogiri::HTML(html) will add <html> and <body> tags.
+ 		doc = Nokogiri::HTML::DocumentFragment.parse(html)
+ 		doc.css("pre[code]").each do |pre|
+ 			pre.replace Albino.colorize(pre.text.rstrip, pre[:code])
+ 		end
+ 		doc.to_s
+ 	end
 
 #  def markdown(text)
 #    # http://rdoc.info/github/tanoku/redcarpet/master/Redcarpet

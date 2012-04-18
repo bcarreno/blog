@@ -11,9 +11,9 @@ gem 'haml'
 gem 'haml-rails' # no need to call config.generators
 
 # syntax highlight
-gem 'albino'
-gem 'redcarpet'
 gem 'nokogiri'
+gem 'redcarpet'
+gem 'albino'      # also: sudo easy_install pygments
 
 group :development, :test do
   gem 'factory_girl_rails'
