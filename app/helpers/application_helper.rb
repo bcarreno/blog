@@ -1,7 +1,7 @@
 module ApplicationHelper
   class HTMLwithAlbino < Redcarpet::Render::HTML
     def block_code(code, language)
-      Albino.colorize(code, language)
+      Pygments.highlight(code, :lexer => language)
     end
   end
 
