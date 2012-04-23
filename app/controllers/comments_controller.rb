@@ -40,7 +40,6 @@ class CommentsController < ApplicationController
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build(params[:comment])
-    debugger
     respond_to do |format|
       if @comment.save
         format.html { redirect_to(article_url(@comment.article_id), notice: 'Thank you for your comment') }

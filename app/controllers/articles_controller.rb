@@ -37,8 +37,6 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
-  # POST /articles
-  # POST /articles.json
   def create
     @article = Article.new(params[:article])
 
