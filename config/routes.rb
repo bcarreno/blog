@@ -1,6 +1,7 @@
 Blog4::Application.routes.draw do
   match "sandbox" => "sandbox#index"
   resources :pages
+  resources :categories
   resources :articles do
     resources :comments
   end

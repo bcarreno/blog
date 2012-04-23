@@ -3,7 +3,7 @@
   -# ~ preserves whitespace for <pre>
   ~raw markdown(@article.body)
 %p
-  Categories: #{@article.keywords}
+  Categories: #{@article.categories.map(&:name).join(', ')}
 %p
   = link_to 'Edit', edit_article_path(@article)
   \|

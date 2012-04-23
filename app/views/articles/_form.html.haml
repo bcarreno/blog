@@ -17,5 +17,11 @@
   .field
     = f.label :body, :cols => 80
     = f.text_area :body
+  .field
+    = f.label 'File under:'
+    - Category.all.each do |category|
+      = check_box_tag "article[category_ids][]", category.id, @article.categories.include?(category)
+      = category.name
+
   .actions
     = f.submit 'Save'
