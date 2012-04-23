@@ -1,5 +1,5 @@
 Blog4::Application.routes.draw do
-  get "sandbox/index"
+  match "sandbox" => "sandbox#index"
   resources :pages
   resources :articles do
     resources :comments
