@@ -11,6 +11,10 @@
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
       #header
+        %div
+          - if current_user
+            Logged in as #{current_user.username}
+            = link_to "Logout", logout_path
       #center
         - if show_title?
           %h1= yield(:title)
