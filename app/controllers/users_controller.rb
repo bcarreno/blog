@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  force_ssl
+
   def new
     @user = User.new
   end
