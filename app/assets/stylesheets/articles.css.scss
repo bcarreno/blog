@@ -1,3 +1,11 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Code syntax highlighting */
+pre {
+  background-color: #F3F3F3;
+  border: solid 1px #CCC;
+  padding: 5px 10px;
+  font-family: 'Menlo', 'Courier New', 'Terminal', monospace;
+}
