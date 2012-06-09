@@ -1,3 +1,4 @@
+/*
 body {
   background-color: #fff;
   color: #333;
@@ -27,13 +28,28 @@ div {
   &.field, &.actions {
     margin-bottom: 10px; } }
 
-#notice {
-  color: green; }
+*/
 
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table; }
+table.form {
+  td {
+    padding: 5px;
+    &:first-child {
+      text-align: right;
+    }
+  }
+  .field_with_errors {
+    label {
+      color: rgb(185, 74, 72);
+    }
+    input {
+      border-color: rgb(233, 50, 45);
+      &:focus {
+        box-shadow: 0pt 0pt 6px rgb(248, 185, 183);
+      }
+    }
+  }
+}
+
 
 #error_explanation {
   width: 450px;
@@ -54,3 +70,4 @@ div {
   ul li {
     font-size: 12px;
     list-style: square; } }
+

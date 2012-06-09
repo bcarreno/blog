@@ -1,31 +1,33 @@
 %h1 Sign Up
 
 = form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2
-        #{pluralize(@user.errors.count, "error")}
-        prohibited this user from being saved:
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :username
-    = f.text_field :username
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-
-  .actions
-    = f.submit 'Create User'
-
+  %fieldset
+    - if @user.errors.any?
+      #error_explanation
+        %h2
+          #{pluralize(@user.errors.count, "error")}
+          prohibited this user from being saved:
+        %ul
+          - @user.errors.full_messages.each do |msg|
+            %li= msg
+  
+    %table.form
+      %tr.field
+        %td= f.label :username
+        %td= f.text_field :username
+      %tr.field
+        %td= f.label :email
+        %td= f.text_field :email
+      %tr.field
+        %td= f.label :name
+        %td= f.text_field :name
+      %tr.field
+        %td= f.label :password
+        %td= f.password_field :password
+      %tr.field
+        %td= f.label :password_confirmation
+        %td= f.password_field :password_confirmation
+      %tr.actions
+        %td
+        %td= f.submit 'Create User'
+  
