@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to(article_url(@comment.article_id), notice: 'Thank you for your comment') }
         format.json { render json: @comment, status: :created, location: @comment }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to(article_url(@comment.article_id), notice: 'Error') }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end

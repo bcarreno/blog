@@ -1,4 +1,10 @@
 Blog4::Application.routes.draw do
+  get "viewer/pgp_key"
+
+  get "viewer/about"
+
+  get "viewer/sandbox"
+
   get "sandbox" => "sandbox#index"
   get "signup" => "users#new", :as => "signup"
   get "login" => "sessions#new", :as => "login"

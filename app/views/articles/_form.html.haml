@@ -8,20 +8,26 @@
         - @article.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :keywords
-    = f.text_field :keywords
-  .field
-    = f.label :body, :cols => 80
-    = f.text_area :body
-  .field
-    = f.label 'File under:'
-    - Category.all.each do |category|
-      = check_box_tag "article[category_ids][]", category.id, @article.categories.include?(category)
-      = category.name
+  %table.form
+    %tr
+      %td= f.label :title
+      %td= f.text_field :title
+    %tr
+      %td= f.label :keywords
+      %td= f.text_field :keywords
+    %tr
+      %td= f.label :body
+      %td= f.text_area :body, :cols => 80
+    %tr
+      %td= f.label :category, 'File&nbsp;under:'.html_safe
+      %td
+        - Category.all.each do |category|
+          = check_box_tag "article[category_ids][]", category.id, @article.categories.include?(category)
+          = category.name
+          &nbsp;
+    %tr
+      %td= f.label :created_at
+      %td= f.date_select :created_at
 
   .actions
     = f.submit 'Save'

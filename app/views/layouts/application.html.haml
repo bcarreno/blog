@@ -18,19 +18,17 @@
             %li= link_to 'Logout', logout_path
 
         %ul#nav.clear
-          %li <a href="#" id="xselected">Blog</a>
-          %li <a href="#">Contact</a>
-          %li <a href="#" id="selected">FAQ</a>
-          %li <a href="#">About</a>
-          %li <a href="#">Videos</a>
+          - menu.each do |m|
+            - m[:access] ||= m[:admin]
+            - if m[:access] == :public || (m[:access] == :connected && current_user) || (m[:access] == :admin && admin?)
+              - selected = /#{params[:controller]}/ =~ m[:path]
+              - selected &&= /#{params[:action]}/ =~ m[:action] unless m[:action].nil?
+              %li= link_to(m[:label], m[:path], selected ? {:id => 'selected'} : {})
 
     #main_content_wrap.outer
       %section#main_content.inner
-        afffaffa
-
         - if show_title?
           %h1= yield(:title)
-
 
         - flash.each do |key, msg|
           = content_tag :div, msg, :id => "flash_#{key}", :class => "alert #{{:error => "alert-error", :alert => "alert-error"}[key].to_s}"
@@ -59,4 +57,4 @@
 
     #footer_wrap.outer
     %footer.inner
-      %p.copyright &copy; 2012 Braulio Carreno
+      %p.copyright &copy; #{Time.now.year} Braulio Carreno
