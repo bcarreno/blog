@@ -1,0 +1,13 @@
+= content_tag(home_page? ? :h2 : :h1, link_to(article.title, article, :class => 'plain'), {:class => 'content_title'}, false)
+.date
+  = l article.created_at, :format => :long
+.article_body
+  ~ raw markdown(article.body)
+.comment_count
+  = link_to(pluralize(article.comments.size, 'comment'), article, :class => 'plain')
+
+-#      %td= link_to 'Show', article
+-#      %td= link_to 'Edit', edit_article_path(article)
+-#      %td= link_to 'Delete', article, :confirm => 'Are you sure?', :method => :delete
+-#
+-#%p= link_to 'New Article', new_article_path

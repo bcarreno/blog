@@ -6,3 +6,6 @@ en:
     attributes:
       user:
         password_digest: 'Password'
+  time:
+    formats:
+      long: '%B %d, %Y'

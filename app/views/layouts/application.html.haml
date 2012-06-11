@@ -10,7 +10,7 @@
     #header_wrap.outer
 
       %header.inner
-        %h1#project_title A rubyist stranded on Martha&rsquo;s Vineyard
+        = content_tag(home_page? ? :h1 : :h2, 'A rubyist stranded on Martha&rsquo;s Vineyard', {:id => 'header_title'}, false)
 
         - if current_user
           %ul#login
