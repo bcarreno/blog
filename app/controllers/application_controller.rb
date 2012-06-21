@@ -9,8 +9,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def authorize
+    redirect_to login_url, :notice => 'Login required' if current_user.nil?
+  end
+
   def admin?
-    true
+    current_user && current_user.admin
   end
   helper_method :admin?
 
