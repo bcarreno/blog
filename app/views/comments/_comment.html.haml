@@ -4,10 +4,8 @@
     = link_to("Edit", edit_article_comment_path(comment.article, comment))
     \|
     = link_to 'Delete', article_comment_path(comment.article, comment), :confirm => 'Are you sure?', :method => :delete
-  %p
-    %strong= comment.name
-  .date
-    = l comment.created_at, :format => :long
-  %p
-    = simple_format(comment.body)
+  %h3
+    %span.author= comment.name
+    %span.date= l comment.created_at, :format => :long
+  = simple_format(comment.body)
 
