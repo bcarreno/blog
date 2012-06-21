@@ -2,7 +2,7 @@
 .date
   = l article.created_at, :format => :long
 .article_body
-  ~ raw markdown(article.body)
+  ~ raw(article.markdown ? markdown(article.body) : article.body)
 .comment_count
   = link_to(pluralize(article.comments.size, 'comment'), article_path(article, :anchor => 'comments'), :class => 'plain')
 

@@ -166,20 +166,20 @@ strong {
   font-weight: bold;
 }
 
-img {
-  position: relative;
-  margin: 0 auto;
-  max-width: 739px;
-  padding: 5px;
-  margin: 10px 0 10px 0;
-  border: 1px solid #ebebeb;
-
-  box-shadow: 0 0 5px #ebebeb;
-  -webkit-box-shadow: 0 0 5px #ebebeb;
-  -moz-box-shadow: 0 0 5px #ebebeb;
-  -o-box-shadow: 0 0 5px #ebebeb;
-  -ms-box-shadow: 0 0 5px #ebebeb;
-}
+//img {
+//  position: relative;
+//  margin: 0 auto;
+//  max-width: 739px;
+//  padding: 5px;
+//  margin: 10px 0 10px 0;
+//  border: 1px solid #ebebeb;
+//
+//  box-shadow: 0 0 5px #ebebeb;
+//  -webkit-box-shadow: 0 0 5px #ebebeb;
+//  -moz-box-shadow: 0 0 5px #ebebeb;
+//  -o-box-shadow: 0 0 5px #ebebeb;
+//  -ms-box-shadow: 0 0 5px #ebebeb;
+//}
 
 pre, code {
   width: 100%;
@@ -278,10 +278,10 @@ form {
   padding: 20px;
 }
 
-img {
-  width: 100%;
-  max-width: 100%;
-}
+//img {
+//  width: 100%;
+//  max-width: 100%;
+//}
 
 .clear {
   clear: both;
@@ -377,6 +377,41 @@ table.form {
     vertical-align: top;
   }
 }
+
+/* Blog */
+.align_right {
+  float: right;
+  margin-left: 13px;
+}
+
+.align_left {
+  float: left;
+  margin-right: 13px;
+}
+
+.framed {
+  vertical-align: text-top;
+  background-color: #FAFAFA;
+  border: 1px solid #D8D8D8;
+
+  img {
+    margin: 0;
+    padding: 5px;
+    vertical-align: bottom;
+  }
+}
+
+.caption {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  text-align:center;
+}
+
+.reference {
+	font-size: 0.85em;
+}
+
 
 /*******************************************************************************
 Small Device Styles
