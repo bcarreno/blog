@@ -9,7 +9,6 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails' # no need to call config.generators
-gem 'bcrypt-ruby', :require => 'bcrypt'
 
 # syntax highlight
 gem 'nokogiri'
@@ -34,7 +33,7 @@ group :assets do
 end
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

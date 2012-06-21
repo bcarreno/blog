@@ -1,24 +1,27 @@
-= form_for @comment do |f|
-  - if @comment.errors.any?
+= form_for [article, comment] do |f|
+  - if comment.errors.any?
     #error_explanation
       %h2
-        #{pluralize(@comment.errors.count, "error")}
+        #{pluralize(comment.errors.count, "error")}
         prohibited this comment from being saved:
       %ul
-        - @comment.errors.full_messages.each do |msg|
+        - comment.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :body
-    = f.text_area :body
-  .field
-    = f.label :article_id
-    = f.number_field :article_id
+  %table.form
+    %tr
+      %td= f.label :name
+      %td= f.text_field :name
+    %tr
+      %td= f.label :email
+      %td= f.text_field :email
+    %tr
+      %td= f.label :body, 'Comment'
+      %td= f.text_area :body, :size => '70x20'
+    - if admin?
+      %tr
+        %td= f.label :created_at, 'Date'
+        %td= f.date_select :created_at
+
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :disabled => (params[:controller] == 'article')

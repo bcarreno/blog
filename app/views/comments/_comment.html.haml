@@ -1,16 +1,13 @@
 .comment
-  %strong= comment.name
-  on
-  = comment.created_at.strftime('%b %d, %Y at %H:%M')
-  says: 
+  - if admin?
+    #content_menu
+    = link_to("Edit", edit_article_comment_path(comment.article, comment))
+    \|
+    = link_to 'Delete', article_comment_path(comment.article, comment), :confirm => 'Are you sure?', :method => :delete
+  %p
+    %strong= comment.name
+  .date
+    = l comment.created_at, :format => :long
   %p
     = simple_format(comment.body)
 
-  = link_to("Edit", edit_article_comment_path(comment.article, comment))
-  \|
-  -# NOTE
-  -# non-nested shortcut: comment          --> comment_path(comment)
-  -# nested version:      [@article, comment] --> article_comment_path(comment)
-  -# path_params = {:article_id => comment.article.id, :id => comment.id}
-  -#= link_to_destroy 'Delete', article_comment_path(path_params), confirm_destroy_article_comment_path(path_params)
-  = link_to 'Delete', article_comment_path(:article_id => comment.article.id, :id => comment.id), :confirm => 'Are you sure?', :method => :delete

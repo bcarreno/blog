@@ -1,45 +1,63 @@
-- title @article.title
-%p
-  -# ~ preserves whitespace for <pre>
-  ~raw markdown(@article.body)
-%p
-  Categories: #{@article.categories.map(&:name).join(', ')}
-%p
-  HTML keywords: #{@article.keywords}
-%p
-  #{@article.created_at}
-%p
-  = link_to 'Edit', edit_article_path(@article)
-  \|
-  = link_to 'Destroy', @article, :confirm => 'Are you sure?', :method => :delete
-  \|
-  = link_to 'New article', new_article_path
-  \|
-  = link_to 'List articles', articles_path
+- if admin?
+  #content_menu
+    = link_to 'Edit', edit_article_path(@article)
+    \|
+    = link_to 'Destroy', @article, :confirm => 'Are you sure?', :method => :delete
+    \|
+    = link_to 'New article', new_article_path
+    \|
+    = link_to 'List articles', articles_path
 
-%h3#comments_count
-  = link_to pluralize(@article.comments.size, 'comment'), article_url(@article, :anchor => 'comments')
-
+= content_tag(home_page? ? :h2 : :h1, @article.title, {:class => 'content_title'}, false)
+.date
+  = l @article.created_at, :format => :long
+.article_body
+  ~ raw markdown(@article.body)
 #comments
   %a{:id => 'comments', :name => 'comments'}
+  %p#comments_count
+    - if @article.comments.size == 0
+      No comments yet
+    - else
+      = pluralize(@article.comments.size, 'comment')
   = render :partial => @article.comments
 
-%h3 Add a Comment
+%h3 Leave a Comment
 
--# Array is needed for nested resources
 -# NOTE we don't build a new comment attached to @article, i.e. we don't modify the collection @article.comments
 -#      this what Steve Klabnik talks here: https://gist.github.com/2379785
-= form_for [@article, Comment.new({:article => @article}, :without_protection => true)] do |f|
-  %p
-    = f.label :name
-    %br
-    = f.text_field :name
-  %p
-    = f.label :email
-    %br
-    = f.text_field :email
-  %p
-    = f.label :body
-    %br
-    = f.text_area :body, :size => '70x20'
-  %p= f.submit "Add Comment"
+- comment = Comment.new({:article => @article}, :without_protection => true)
+#new_comment
+  = render :partial => 'comments/form', :locals => {:article => @article, :comment => comment}
+
+:javascript
+  $(function() {
+    // Enable submit only if JS is enabled
+    $(':submit').attr('disabled', false);
+    $('form').submit(function() {
+      var handler = function(response) {
+        var error_explanation = $(response).find('#error_explanation');
+        $('#error_explanation').remove();
+        if (error_explanation.length > 0) {
+          $('form').prepend(error_explanation);
+        } else {
+          $('#comments').append(response);
+          var text, count;
+          switch (count = $('.comment').length) {
+            case 0:
+              text = 'No comments yet';
+              break;
+            case 1:
+              text = '1 comment';
+              break;
+            default:
+              text = count + ' comments';
+          }
+          $('#comments_count').html(text);
+          $('form')[0].reset();
+        }
+      };
+      $.post("#{article_comments_path(@article)}", $(this).serializeArray(), handler);
+      return false;
+    });
+  });

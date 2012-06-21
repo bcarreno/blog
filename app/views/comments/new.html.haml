@@ -1,5 +1,5 @@
 %h1 New comment
 
-= render 'form'
+= render :partial => 'form', :locals => {:article => @article, :comment => @comment}
 
-%p= link_to 'List', comments_path
+%p= link_to 'List', article_comments_path(@article)

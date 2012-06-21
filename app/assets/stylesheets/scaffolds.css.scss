@@ -39,10 +39,10 @@ table.form {
   }
   .field_with_errors {
     label {
-      color: rgb(185, 74, 72);
+      color: #8A0808;
     }
     input {
-      border-color: rgb(233, 50, 45);
+      border-color: #8A0808;
       &:focus {
         box-shadow: 0pt 0pt 6px rgb(248, 185, 183);
       }
@@ -52,12 +52,12 @@ table.form {
 
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
+  width: 400px;
+  border: 1px solid #8A0808;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: #e4e4e4;
   h2 {
     text-align: left;
     font-weight: bold;
@@ -65,9 +65,12 @@ table.form {
     font-size: 12px;
     margin: -7px;
     margin-bottom: 0px;
-    background-color: #c00;
+    background-color: #8A0808;
+    background-image: none;
     color: #fff; }
-  ul li {
+  ul {
+    padding-top: 10px;
     font-size: 12px;
-    list-style: square; } }
+    padding-left: 10px;
+     } }
 

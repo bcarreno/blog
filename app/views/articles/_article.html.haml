@@ -4,7 +4,7 @@
 .article_body
   ~ raw markdown(article.body)
 .comment_count
-  = link_to(pluralize(article.comments.size, 'comment'), article, :class => 'plain')
+  = link_to(pluralize(article.comments.size, 'comment'), article_path(article, :anchor => 'comments'), :class => 'plain')
 
 -#      %td= link_to 'Show', article
 -#      %td= link_to 'Edit', edit_article_path(article)

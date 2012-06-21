@@ -1,8 +1,8 @@
 %h1 Editing comment
 
-= render 'form'
+= render 'form', :article => @article, :comment => @comment
 
-%p
+-#%p
   = link_to 'Show', @comment
   \|
   = link_to 'Delete', @comment, :confirm => 'Are you sure?', :method => :delete
