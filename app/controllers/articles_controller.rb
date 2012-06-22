@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    @article = Article.find(params[:id])
+    @article = Article.find_using_slug(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = Article.find(params[:id])
+    @article = Article.find_using_slug(params[:id])
   end
 
   def create
@@ -55,7 +55,7 @@ class ArticlesController < ApplicationController
   # PUT /articles/1
   # PUT /articles/1.json
   def update
-    @article = Article.find(params[:id])
+    @article = Article.find_using_slug(params[:id])
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
@@ -71,7 +71,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    @article = Article.find(params[:id])
+    @article = Article.find_using_slug(params[:id])
     @article.destroy
 
     respond_to do |format|

@@ -9,6 +9,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails' # no need to call config.generators
+gem 'slugged'
 
 # syntax highlight
 gem 'nokogiri'

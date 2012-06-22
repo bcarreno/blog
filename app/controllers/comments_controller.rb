@@ -58,7 +58,7 @@ class CommentsController < ApplicationController
   private
 
   def find_article_comment
-    @article = Article.find(params[:article_id])
+    @article = Article.find_using_slug(params[:article_id])
     @comment = @article.comments.find(params[:id]) unless params[:id].nil?
   end
 
