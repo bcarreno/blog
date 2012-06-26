@@ -23,42 +23,43 @@
       = pluralize(@article.comments.size, 'comment')
   = render :partial => @article.comments
 
-%h3 Leave a Comment
+- if @article.comments_allowed
+  %h3 Leave a Comment
 
--# NOTE we don't build a new comment attached to @article, i.e. we don't modify the collection @article.comments
--#      this what Steve Klabnik talks here: https://gist.github.com/2379785
-- comment = Comment.new({:article => @article}, :without_protection => true)
-#new_comment
-  = render :partial => 'comments/form', :locals => {:article => @article, :comment => comment}
+  -# NOTE we don't build a new comment attached to @article, i.e. we don't modify the collection @article.comments
+  -#      this what Steve Klabnik talks here: https://gist.github.com/2379785
+  - comment = Comment.new({:article => @article}, :without_protection => true)
+  #new_comment
+    = render :partial => 'comments/form', :locals => {:article => @article, :comment => comment}
 
-:javascript
-  $(function() {
-    // Enable submit only if JS is enabled
-    $(':submit').attr('disabled', false);
-    $('form').submit(function() {
-      var handler = function(response) {
-        var error_explanation = $(response).find('#error_explanation');
-        $('#error_explanation').remove();
-        if (error_explanation.length > 0) {
-          $('form').prepend(error_explanation);
-        } else {
-          $('#comments').append(response);
-          var text, count;
-          switch (count = $('.comment').length) {
-            case 0:
-              text = 'No comments yet';
-              break;
-            case 1:
-              text = '1 comment';
-              break;
-            default:
-              text = count + ' comments';
+  :javascript
+    $(function() {
+      // Enable submit only if JS is enabled
+      $(':submit').attr('disabled', false);
+      $('form').submit(function() {
+        var handler = function(response) {
+          var error_explanation = $(response).find('#error_explanation');
+          $('#error_explanation').remove();
+          if (error_explanation.length > 0) {
+            $('form').prepend(error_explanation);
+          } else {
+            $('#comments').append(response);
+            var text, count;
+            switch (count = $('.comment').length) {
+              case 0:
+                text = 'No comments yet';
+                break;
+              case 1:
+                text = '1 comment';
+                break;
+              default:
+                text = count + ' comments';
+            }
+            $('#comments_count').html(text);
+            $('form')[0].reset();
           }
-          $('#comments_count').html(text);
-          $('form')[0].reset();
-        }
-      };
-      $.post("#{article_comments_path(@article)}", $(this).serializeArray(), handler);
-      return false;
+        };
+        $.post("#{article_comments_path(@article)}", $(this).serializeArray(), handler);
+        return false;
+      });
     });
-  });

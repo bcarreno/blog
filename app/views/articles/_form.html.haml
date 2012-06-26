@@ -28,5 +28,12 @@
     %tr
       %td= f.label :created_at
       %td= f.date_select :created_at
+    %tr
+      %td= f.label :is_published, 'Published?'.html_safe
+      %td= f.check_box :is_published
+    %tr
+      %td= f.label :comments_allowed, 'Comments&nbsp;Allowed?'.html_safe
+      %td= f.check_box :comments_allowed
+
   .actions
     = f.submit 'Save'

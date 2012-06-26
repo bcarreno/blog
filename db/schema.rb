@@ -11,16 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120622012426) do
+ActiveRecord::Schema.define(:version => 20120626224557) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
     t.string   "keywords"
     t.text     "body"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "markdown",    :default => false, :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.boolean  "markdown",         :default => false, :null => false
     t.string   "cached_slug"
+    t.boolean  "is_published",     :default => false, :null => false
+    t.boolean  "comments_allowed", :default => true,  :null => false
   end
 
   add_index "articles", ["cached_slug"], :name => "index_articles_on_cached_slug"

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_filter :authorize, :except => [:new, :create]
+  before_filter :authorize, :except => [:create]
   before_filter :find_article_comment
 
   def index
@@ -30,9 +30,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @article.comments.new(params[:comment])
-    template = @comment.save ? 'comment' : 'form'
-    render :partial => template, :locals => {:article => @article, :comment => @comment}
+    if !@article.comments_allowed
+      render :nothing => true
+    else
+      @comment = @article.comments.new(params[:comment])
+      template = @comment.save ? 'comment' : 'form'
+      render :partial => template, :locals => {:article => @article, :comment => @comment}
+    end
   end
 
   def update
