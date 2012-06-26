@@ -1,3 +1,5 @@
+- set_title @article.title
+
 - if admin?
   #content_menu
     = link_to 'Edit', edit_article_path(@article)
@@ -8,7 +10,6 @@
     \|
     = link_to 'List articles', articles_path
 
-= content_tag(home_page? ? :h2 : :h1, @article.title, {:class => 'content_title'}, false)
 .date
   = l @article.created_at, :format => :long
 .article_body

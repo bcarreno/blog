@@ -1,4 +1,5 @@
-= content_tag(home_page? ? :h2 : :h1, link_to(article.title, article, :class => 'plain'), {:class => 'content_title'}, false)
+-# content_tag(home_page? ? :h2 : :h1, link_to(article.title, article, :class => 'plain'), {:class => 'content_title'}, false)
+%h2= link_to(article.title, article, :class => 'plain')
 .date
   = l article.created_at, :format => :long
 .article_body
