@@ -4,4 +4,13 @@ class Article < ActiveRecord::Base
   has_and_belongs_to_many :categories
   accepts_nested_attributes_for :comments, :allow_destroy => true
   is_sluggable :title, :history => false
+  scope :published, where(:published => true)
+
+  def self.visibles(user=nil)
+    if user && user.admin
+      self.scoped
+    else
+      self.where(:is_published => true)
+    end
+  end
 end

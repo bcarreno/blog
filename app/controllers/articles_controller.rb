@@ -1,46 +1,42 @@
 class ArticlesController < ApplicationController
 
   before_filter :authorize, :except => [:index, :show]
+  before_filter :find_article, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @articles = Article.order('created_at desc')
-
+    @articles = Article.visibles(current_user).order('created_at desc')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @articles }
     end
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
   def show
-    @article = Article.find_using_slug(params[:id])
+    if @article.nil?
+      redirect_to articles_url, :notice => 'Article not found'
+    else
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @article }
     end
   end
 
-  # GET /articles/new
-  # GET /articles/new.json
   def new
     @article = Article.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @article }
     end
   end
 
-  # GET /articles/1/edit
   def edit
-    @article = Article.find_using_slug(params[:id])
+    if @article.nil?
+      redirect_to articles_url, :notice => 'Article not found'
+    else
+
+    end
   end
 
   def create
     @article = Article.new(params[:article])
-
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
@@ -52,31 +48,32 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # PUT /articles/1
-  # PUT /articles/1.json
   def update
-    @article = Article.find_using_slug(params[:id])
-
-    respond_to do |format|
-      if @article.update_attributes(params[:article])
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    if @article.nil?
+      redirect_to articles_url, :notice => 'Article not found'
+    elsif @article.update_attributes(params[:article])
+      redirect_to @article, notice: 'Article was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
-  # DELETE /articles/1
-  # DELETE /articles/1.json
   def destroy
-    @article = Article.find_using_slug(params[:id])
-    @article.destroy
-
+    @article.destroy if @article
     respond_to do |format|
       format.html { redirect_to articles_url }
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def find_article
+    begin
+      @article = Article.visibles(current_user).find_using_slug(params[:id])
+    rescue
+      @article = nil
+    end
+  end
+
 end
