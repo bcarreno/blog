@@ -18,7 +18,7 @@
   %a{:id => 'comments', :name => 'comments'}
   %p#comments_count
     - if @article.comments.size == 0
-      No comments yet
+      No comments
     - else
       = pluralize(@article.comments.size, 'comment')
   = render :partial => @article.comments
@@ -47,7 +47,7 @@
             var text, count;
             switch (count = $('.comment').length) {
               case 0:
-                text = 'No comments yet';
+                text = 'No comments';
                 break;
               case 1:
                 text = '1 comment';
