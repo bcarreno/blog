@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :authorize
-  force_ssl
+#  force_ssl
 
   def new
     @user = User.new
