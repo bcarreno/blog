@@ -143,20 +143,33 @@ a#selected {
 }
 
 /* TODO should be nav */
-header ul#nav li {
+header li {
   display: inline;
-  padding-right: 40px;
-  font-size: 1.2em;
 }
-ul#login {
+
+header ul#nav {
+  float: left;
+
+  li {
+    padding-right: 40px;
+    font-size: 1.2em;
+  }
+}
+
+header ul#login {
   text-align: right;
+
+  li {
+    color: #eee;
+    padding-left: 20px;
+    font-size: 0.8em;
+  }
 }
-header ul#login li {
-  color: #eee;
-  padding-left: 20px;
-  display: inline;
-  font-size: 0.8em;
+
+header #icons {
+  float: right;
 }
+
 
 em {
   font-style: italic;
@@ -431,6 +444,7 @@ table.form {
     padding: 0;
   }
 }
+
 
 /*******************************************************************************
 Small Device Styles

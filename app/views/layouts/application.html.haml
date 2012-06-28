@@ -18,13 +18,20 @@
             %li= "Logged in as #{link_to(current_user.username, current_user)}".html_safe
             %li= link_to 'Logout', logout_path
 
-        %ul#nav.clear
+        %ul#nav
           - menu.each do |m|
             - m[:access] ||= m[:admin]
             - if m[:access] == :public || (m[:access] == :connected && current_user) || (m[:access] == :admin && admin?)
               - selected = /#{params[:controller]}/ =~ m[:path]
               - selected &&= /#{params[:action]}/ =~ m[:action] unless m[:action].nil?
               %li= link_to(m[:label], m[:path], selected ? {:id => 'selected'} : {})
+
+        %ul#icons
+          %li= link_to image_tag("twitter_24.png"), 'http://twitter.com/#!/bcarreno'
+          %li= link_to image_tag("linkedin_24.png"), 'http://www.linkedin.com/in/bcarreno'
+          %li= link_to image_tag("flickr_24.png"), 'http://www.flickr.com/photos/bcarreno/'
+          %li= link_to image_tag("github_26.png"), 'https://github.com/bcarreno'
+        .clear
 
     #main_content_wrap.outer
       %section#main_content.inner
@@ -35,26 +42,6 @@
           = content_tag :div, msg, :id => "flash_#{key}", :class => "alert #{{:error => "alert-error", :alert => "alert-error"}[key].to_s}"
 
         = yield
-
-        %h3 Welcome to GitHub Pages.
-        %p This automatic page generator is the easiest way to create beautiful 
-        pages for all of your projects. Author your page content here using 
-        GitHub Flavored Markdown, select a template crafted by a designer, and 
-        publish. After your page is generated, you can check out the new branch:
-
-        <pre><code>$ cd your_repo_root/repo_name
-        $ git fetch origin
-        $ git checkout gh-pages
-        </code></pre>
-
-        %p If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.
-
-        %h2 Designer Templates
-        %p We've crafted some handsome templates for you to use. Go ahead and 
-        continue to layouts to browse through them. You can easily go back to 
-        edit your page before publishing. After publishing your page, you can 
-        revisit the page generator and switch to another theme. Your Page 
-        content will be preserved if it remained markdown format.
 
     #footer_wrap.outer
     %footer.inner
