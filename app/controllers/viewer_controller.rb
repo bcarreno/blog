@@ -6,5 +6,6 @@ class ViewerController < ApplicationController
   end
 
   def sandbox
+    authorize
   end
 end
