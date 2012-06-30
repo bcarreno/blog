@@ -131,7 +131,7 @@ a {
   }
 }
 
-header a:hover, footer a:hover {
+#header a:hover, footer a:hover {
   color: #43adff;
   text-shadow: none;
 }
@@ -143,11 +143,11 @@ a#selected {
 }
 
 /* TODO should be nav */
-header li {
+#header li {
   display: inline;
 }
 
-header ul#nav {
+#header ul#nav {
   float: left;
 
   li {
@@ -156,7 +156,7 @@ header ul#nav {
   }
 }
 
-header ul#login {
+#header ul#login {
   text-align: right;
 
   li {
@@ -166,7 +166,7 @@ header ul#login {
   }
 }
 
-header #icons {
+#header #icons {
   float: right;
 }
 

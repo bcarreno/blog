@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
--#!!!
+!!!
 %html
   %head
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -11,7 +10,7 @@
   %body
     #header_wrap.outer
 
-      %header.inner
+      #header.inner
         %h6#header_title= motto
 
         - if current_user
@@ -35,7 +34,7 @@
         .clear
 
     #main_content_wrap.outer
-      %section#main_content.inner
+      #main_content.inner
         %h1{:style => "display: #{show_title? ? 'inline' : 'none'}"}
           = yield(:title)
 
