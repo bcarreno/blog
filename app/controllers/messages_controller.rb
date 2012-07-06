@@ -39,7 +39,7 @@ class MessagesController < ApplicationController
       if params[:subject].present?
         logger.info "Honeypot Captcha Spam: #{params[:subject]}, #{params[:message].inspect}"
       else
-        Notifications.new_message(@message).deliver
+        Notification.new_message(@message).deliver
       end
       flash.notice = "I'll get back to you as soon as I can, thanks."
       redirect_to viewer_about_url

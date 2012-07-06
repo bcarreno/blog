@@ -1,8 +1,8 @@
 class Notification < ActionMailer::Base
-  default from: ENV['GMAIL_USER']
+  default :from => ActionMailer::Base.smtp_settings[:user_name], :to => ActionMailer::Base.smtp_settings[:user_name]
 
   def new_message(message)
     @message = message
-    mail(:to => ENV['GMAIL_USER'], 'New message')
+    mail(:subject => 'New message')
   end
 end

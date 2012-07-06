@@ -51,13 +51,13 @@ Blog4::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
-  raise "SMTP variables not defined" if ENV['GMAIL_USER'].nil? || ENV['GMAIL_PASSWORD'].nil?
+  config = YAML::load File.read(Rails.root + 'config/mailer.yml')
   ActionMailer::Base.smtp_settings = {
-    :address              => "smtp.gmail.com",
+    :address              => config['address'],
     :port                 => 587,
-    :domain               => "carreno.me",
-    :user_name            => ENV['GMAIL_USER'],
-    :password             => ENV['GMAIL_PASSWORD'],
+    :domain               => config['domain'],
+    :user_name            => config['user_name'],
+    :password             => config['password'],
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
