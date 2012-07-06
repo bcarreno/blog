@@ -51,13 +51,13 @@ Blog4::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
-  config = YAML::load File.read(Rails.root + 'config/mailer.yml')
+  mailer = YAML::load File.read(Rails.root + 'config/mailer.yml')
   ActionMailer::Base.smtp_settings = {
-    :address              => config['address'],
+    :address              => mailer['address'],
     :port                 => 587,
-    :domain               => config['domain'],
-    :user_name            => config['user_name'],
-    :password             => config['password'],
+    :domain               => mailer['domain'],
+    :user_name            => mailer['user_name'],
+    :password             => mailer['password'],
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
