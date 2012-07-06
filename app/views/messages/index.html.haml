@@ -2,7 +2,6 @@
 
 %table
   %tr
-    %th Name
     %th Email
     %th Body
     %th
@@ -11,7 +10,6 @@
 
   - @messages.each do |message|
     %tr
-      %td= message.name
       %td= message.email
       %td= message.body
       %td= link_to 'Show', message

@@ -15,7 +15,6 @@ Blog4::Application.routes.draw do
   resources :articles do
     resources :comments
   end
-  # resources :comments, :only => [:index] TODO only for admin
 
   root :to => 'articles#index'
 
