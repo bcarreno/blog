@@ -10,3 +10,9 @@
   Now I&rsquo;m back to software development, and as a builder at heart, I&rsquo;m doing what I enjoy the most.
 %p
   My hobbies are airplane modeling and photography.
+%p
+  If you want to contact me, please use the form below.
+
+#new_message
+  - @message ||= Message.new
+  = render :partial => 'messages/form' #, :locals => {:message => Message.new}

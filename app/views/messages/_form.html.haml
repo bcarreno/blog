@@ -1,0 +1,23 @@
+= form_for @message do |f|
+  - if @message.errors.any?
+    #error_explanation
+      %h2
+        #{pluralize(@message.errors.count, "error")}
+        prohibited this message from being saved:
+      %ul
+        - @message.errors.full_messages.each do |msg|
+          %li= msg
+
+  %table.form
+    %tr
+      %td= f.label :email
+      %td= f.text_field :email
+    %tr#subject
+      %td= label_tag :subject
+      %td= text_field_tag :subject, nil, :autocomplete => 'off'
+    %tr
+      %td= f.label :body, 'Message'
+      %td= f.text_area :body, :size => '67x12'
+    %tr
+      %td
+      %td= f.submit 'Save'

@@ -1,0 +1,12 @@
+%h1 Editing message
+
+= render 'form'
+
+%p
+  = link_to 'Show', @message
+  \|
+  = link_to 'Delete', @message, :confirm => 'Are you sure?', :method => :delete
+  \|
+  = link_to 'New Message', new_message_path
+  \|
+  = link_to 'List', messages_path
