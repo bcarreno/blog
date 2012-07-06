@@ -22,6 +22,6 @@
       %tr
         %td= f.label :created_at, 'Date'
         %td= f.date_select :created_at
-
-  .actions
-    = f.submit 'Save', :disabled => (params[:controller] == 'article')
+    %tr
+      %td
+      %td= f.submit 'Save', :disabled => (params[:controller] == 'article')
