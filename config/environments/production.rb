@@ -51,6 +51,17 @@ Blog4::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
+  raise "SMTP variables not defined" if ENV['GMAIL_USER'].nil? || ENV['GMAIL_PASSWORD'].nil?
+  ActionMailer::Base.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => "carreno.me",
+    :user_name            => ENV['GMAIL_USER'],
+    :password             => ENV['GMAIL_PASSWORD'],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
+
   # Enable threaded mode
   # config.threadsafe!
 
