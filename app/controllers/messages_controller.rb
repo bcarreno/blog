@@ -36,7 +36,11 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
     if params[:subject].present? || @message.save
-      logger.info "Honeypot Captcha Spam: #{params[:subject]}, #{params[:message].inspect}" if params[:subject].present?
+      if params[:subject].present?
+        logger.info "Honeypot Captcha Spam: #{params[:subject]}, #{params[:message].inspect}"
+      else
+        Notifications.new_message(@message).deliver
+      end
       flash.notice = "I'll get back to you as soon as I can, thanks."
       redirect_to viewer_about_url
     else
