@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 
-  before_filter :authorize, :except => [:create]
+  before_filter :authorize_admin, :except => [:create]
 
   def index
     @messages = Message.all

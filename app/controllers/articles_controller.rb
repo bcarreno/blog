@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-  before_filter :authorize, :except => [:index, :show]
+  before_filter :authorize_admin, :except => [:index, :show]
   before_filter :find_article, :only => [:show, :edit, :update, :destroy]
 
   def index

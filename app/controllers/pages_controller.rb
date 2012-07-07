@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  before_filter :authorize
+  before_filter :authorize_admin
 
   def index
     @pages = Page.all

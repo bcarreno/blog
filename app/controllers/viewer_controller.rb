@@ -7,7 +7,7 @@ class ViewerController < ApplicationController
   end
 
   def sandbox
-    authorize
+    authorize_admin
   end
 
   def videos

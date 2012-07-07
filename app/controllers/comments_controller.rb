@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_filter :authorize, :except => [:create]
+  before_filter :authorize_admin, :except => [:create]
   before_filter :find_article_comment
 
   def index

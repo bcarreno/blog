@@ -13,6 +13,11 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, :notice => 'Login required' if current_user.nil?
   end
 
+  def authorize_admin
+    authorize
+    redirect_to root_url if current_user && !admin?
+  end
+
   def admin?
     current_user && current_user.admin
   end
