@@ -4,6 +4,10 @@
 en:
   activerecord:
     attributes:
+      comment:
+        body: 'Comment'
+      message:
+        body: 'Message'
       user:
         password_digest: 'Password'
   time:
