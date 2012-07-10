@@ -22,6 +22,9 @@ class MessagesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to message_path(assigns(:message))
+    # TODO
+    assert_equal 1, ActionMailer::Base.deliveries.size
+
   end
 
   test "should show message" do

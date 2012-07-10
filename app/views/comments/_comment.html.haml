@@ -1,11 +1,11 @@
 .comment
-  - if admin? && @comment.id
+  - if admin? && comment.id
     #content_menu
-    = link_to("Edit", edit_article_comment_path(@comment.article, @comment))
+    = link_to("Edit", edit_article_comment_path(comment.article, comment))
     \|
-    = link_to 'Delete', article_comment_path(@comment.article, @comment), :confirm => 'Are you sure?', :method => :delete
+    = link_to 'Delete', article_comment_path(comment.article, comment), :confirm => 'Are you sure?', :method => :delete
   %h3
-    %span.author= @comment.name
-    %span.date= l @comment.created_at || Time.now, :format => :long
-  = simple_format(@comment.body)
+    %span.author= comment.name
+    %span.date= l comment.created_at || Time.now, :format => :long
+  = simple_format(comment.body)
 
