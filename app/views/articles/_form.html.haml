@@ -29,6 +29,12 @@
       %td= f.label :created_at
       %td= f.date_select :created_at
     %tr
+      %td= f.label :cached_slug
+      %td= f.text_field :cached_slug
+    %tr
+      %td= f.label :markdown
+      %td= f.check_box :markdown
+    %tr
       %td= f.label :is_published, 'Published?'.html_safe
       %td= f.check_box :is_published
     %tr
