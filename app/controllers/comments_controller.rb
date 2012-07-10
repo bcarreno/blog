@@ -34,8 +34,14 @@ class CommentsController < ApplicationController
       render :nothing => true
     else
       @comment = @article.comments.new(params[:comment])
-      template = @comment.save ? 'comment' : 'form'
-      render :partial => template, :locals => {:article => @article, :comment => @comment}
+      if params[:subject].blank?
+        saved = @comment.save
+      else
+        saved = true
+        logger.info "Honeypot Captcha Spam comment: #{params[:subject]}, #{params[:comment].inspect}"
+      end
+      render :partial => saved ? 'comment' : 'form'#, :locals => {:article => @article, :comment => @comment}
+      Notification.new_comment(@comment).deliver if saved && params[:subject].blank?
     end
   end
 

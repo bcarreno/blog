@@ -1,11 +1,11 @@
-= form_for [article, comment] do |f|
-  - if comment.errors.any?
+= form_for [@article, @comment] do |f|
+  - if @comment.errors.any?
     #error_explanation
       %h2
-        #{pluralize(comment.errors.count, "error")}
+        #{pluralize(@comment.errors.count, "error")}
         prohibited this comment from being saved:
       %ul
-        - comment.errors.full_messages.each do |msg|
+        - @comment.errors.full_messages.each do |msg|
           %li= msg
 
   %table.form
@@ -14,7 +14,12 @@
       %td= f.text_field :name
     %tr
       %td= f.label :email
-      %td= f.text_field :email
+      %td
+        = f.text_field :email
+        optional, not displayed
+    %tr#subject
+      %td= label_tag :subject
+      %td= text_field_tag :subject, nil, :autocomplete => 'off'
     %tr
       %td= f.label :body, 'Comment'
       %td= f.text_area :body, :size => '70x20'
