@@ -2,17 +2,21 @@
 
 %p
   = image_tag 'about.png', :class => 'framed align_right'
+  My name is Braulio Carreno and I am a freelance software developer
+  in Massachusetts.  I spend my time between Martha&rsquo;s Vineyard and Cambridge.
 %p
-  My name is Braulio Carreno. I live on Martha&rsquo;s Vineyard, but spend a lot of time in Boston.
-%p
-  I&rsquo;ve had to wear many hats throughout my career: developer, project manager,
-  systems administrator, network engineer and CIO.
-  Now I&rsquo;m back to software development, and as a builder at heart, I&rsquo;m doing what I enjoy the most.
-%p
-  My hobbies are airplane modeling and photography.
-%p
-  If you want to contact me, please use the form below.
+  You can contact me through this form.
 
 #new_message
   - @message ||= Message.new
   = render :partial => 'messages/form'
+
+-#
+  %p
+    My name is Braulio Carreno. I live on Martha&rsquo;s Vineyard, but spend a lot of time in Boston.
+  %p
+    I&rsquo;ve had to wear many hats throughout my career: developer, project manager,
+    systems administrator, network engineer and CIO.
+    Now I&rsquo;m back to software development, and as a builder at heart, I&rsquo;m doing what I enjoy the most.
+  %p
+    My hobbies are airplane modeling and photography.
