@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :authorize_admin
+  ssl_required :new, :create if Rails.env.production?
 #  force_ssl
 
   def new
