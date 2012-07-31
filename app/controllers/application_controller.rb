@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :admin?
 
-  def production?
+  def self.production?
     !['test', 'development'].include?(Rails.env)
   end
 
