@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-#  force_ssl
+  ssl_exceptions if production?
 
   def new
   end

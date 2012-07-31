@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :admin?
 
+  def production?
+    !['test', 'development'].include?(Rails.env)
+  end
+
 #  def home_page?
 #    params[:controller] == 'articles' && params[:action] == 'index'
 #  end
