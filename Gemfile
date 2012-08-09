@@ -18,7 +18,6 @@ gem 'pygments.rb'   # no need to: sudo easy_install pygments
 gem 'bartt-ssl_requirement', '~>1.4.0', :require => 'ssl_requirement'
 
 group :development, :test do
-  gem 'factory_girl_rails'
   gem 'debugger'
 end
 
