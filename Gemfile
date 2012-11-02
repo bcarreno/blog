@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails' # no need to call config.generators
 gem 'slugged'
+gem 'newrelic_rpm'
 
 # syntax highlight
 gem 'nokogiri'
@@ -18,7 +19,7 @@ gem 'pygments.rb'   # no need to: sudo easy_install pygments
 gem 'bartt-ssl_requirement', '~>1.4.0', :require => 'ssl_requirement'
 
 group :development, :test do
-  gem 'debugger'
+#  gem 'debugger'
 end
 
 # Gems used only for assets and not required
