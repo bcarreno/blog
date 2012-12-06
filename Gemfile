@@ -10,7 +10,6 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails' # no need to call config.generators
 gem 'slugged'
-gem 'newrelic_rpm'
 
 # syntax highlight
 gem 'nokogiri'
