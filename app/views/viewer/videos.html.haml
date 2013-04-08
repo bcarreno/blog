@@ -1,0 +1,7 @@
+- set_title 'Videos'
+
+- @videos.each do |video|
+  %p=raw "<iframe width='640' height='360' src='http://www.youtube-nocookie.com/embed/#{video.youtube_id}' frameborder='0' allowfullscreen></iframe>"
+  %p{:style => 'text-align: center;'}= video.title
+
+%p= paginate @videos

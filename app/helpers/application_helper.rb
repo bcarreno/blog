@@ -32,4 +32,8 @@ module ApplicationHelper
     ]
   end
 
+  def duration(seconds)
+    hours = seconds / 60
+    "#{hours}:#{seconds - hours * 60}"
+  end
 end

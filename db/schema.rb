@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120705195442) do
+ActiveRecord::Schema.define(:version => 20130402223135) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(:version => 20120705195442) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.boolean  "admin",           :default => false, :null => false
+  end
+
+  create_table "videos", :force => true do |t|
+    t.string   "title",                         :null => false
+    t.string   "youtube_id",                    :null => false
+    t.integer  "duration"
+    t.boolean  "is_hd",      :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
 end

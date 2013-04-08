@@ -17,4 +17,3 @@
 /extras
 
 /config/*.yml
-/app/views/viewer/videos.html.haml
