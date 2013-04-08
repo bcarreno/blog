@@ -12,7 +12,7 @@ class ViewerController < ApplicationController
 
   def videos
     authorize
-    @videos = Video.order('created_at desc')
+    @videos = Video.order('created_at desc').page params[:page]
   end
 
 end

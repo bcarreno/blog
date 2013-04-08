@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails' # no need to call config.generators
 gem 'slugged'
+gem 'kaminari'
 
 # syntax highlight
 gem 'nokogiri'

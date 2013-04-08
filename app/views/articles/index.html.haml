@@ -5,3 +5,5 @@
     = link_to 'New article', new_article_path
 
 = render :partial => 'article', :collection => @articles
+
+%p= paginate @articles

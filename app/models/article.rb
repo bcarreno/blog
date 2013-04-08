@@ -5,6 +5,7 @@ class Article < ActiveRecord::Base
   accepts_nested_attributes_for :comments, :allow_destroy => true
   is_sluggable :title, :history => false
   scope :published, where(:published => true)
+  paginates_per 4
 
   def self.visibles(user=nil)
     if user && user.admin

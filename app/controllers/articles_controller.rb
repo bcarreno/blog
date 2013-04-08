@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_filter :find_article, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @articles = Article.visibles(current_user).order('created_at desc')
+    @articles = Article.visibles(current_user).order('created_at desc').page params[:page]
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @articles }
