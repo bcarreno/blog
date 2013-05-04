@@ -51,9 +51,7 @@ class ArticlesController < ApplicationController
   def update
     if @article.nil?
       redirect_to articles_url, :notice => 'Article not found'
-    elsif @article.update_attributes(params[:article])
-      redirect_to @article, notice: 'Article was successfully updated.'
-    else
+    else @article.update_attributes(params[:article])
       render action: "edit"
     end
   end
