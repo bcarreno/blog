@@ -15,7 +15,4 @@ class ViewerController < ApplicationController
     @videos = Video.order('created_at desc').page params[:page]
   end
 
-  def iquique
-  end
-
 end
