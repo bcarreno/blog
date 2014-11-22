@@ -1,0 +1,12 @@
+regular:
+  username: regular
+  email: regular@test.com
+  name: Regular User
+  password_digest: xxx
+
+admin:
+  username: admin
+  email: admin@test.com
+  name: Admin User
+  password_digest: xxx
+  admin: true

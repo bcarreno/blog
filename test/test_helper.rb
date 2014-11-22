@@ -10,4 +10,9 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def login_user(user)
+    user = users(user) if user.is_a? Symbol
+    session[:user_id] = user.id
+  end
 end
