@@ -15,5 +15,6 @@
 /tmp
 
 /extras
+/private
 
 /config/*.yml

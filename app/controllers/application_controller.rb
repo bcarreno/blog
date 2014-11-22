@@ -34,6 +34,15 @@ class ApplicationController < ActionController::Base
     !['test', 'development'].include?(Rails.env)
   end
 
+  def full_private_filename(filename)
+    full_filename = File.expand_path(filename, PRIVATE_ASSETS_PATH)
+    if File.join(PRIVATE_ASSETS_PATH, filename) == full_filename
+      full_filename
+    else
+      raise ActionController::MissingFile
+    end
+  end
+
 #  def home_page?
 #    params[:controller] == 'articles' && params[:action] == 'index'
 #  end

@@ -8,6 +8,8 @@ Blog4::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
+  get 'photos',           to: 'photos#index'
+  get 'photos/*base',     to: 'photos#show'
   resources :categories
   resources :messages
   resources :pages
