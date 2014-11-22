@@ -2,8 +2,14 @@ class ApplicationController < ActionController::Base
 
   include ::SslRequirement
   protect_from_forgery
+  rescue_from ActiveRecord::RecordNotFound,         :with => :render_404
+  rescue_from ActionController::MissingFile,        :with => :render_404
 
   private
+
+  def render_404
+    render "system/error_404", status: 404, layout: 'application', formats: [:html]
+  end
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
