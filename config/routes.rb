@@ -1,13 +1,13 @@
 Blog4::Application.routes.draw do
 
-  get "viewer/about"
-  get "viewer/pgp_key"
-  get "viewer/sandbox"
-  get "viewer/videos"
-  get "sandbox" => "sandbox#index"
-  get "signup" => "users#new", :as => "signup"
-  get "login" => "sessions#new", :as => "login"
-  get "logout" => "sessions#destroy", :as => "logout"
+  get 'viewer/about'
+  get 'viewer/pgp_key'
+  get 'viewer/sandbox'
+  get 'viewer/videos'
+  get 'sandbox',          to: 'sandbox#index'
+  get 'signup',           to: 'users#new',        as: 'signup'
+  get 'login',            to: 'sessions#new',     as: 'login'
+  get 'logout',           to: 'sessions#destroy', as: 'logout'
   get 'photos',           to: 'photos#index'
   get 'photos/*base',     to: 'photos#show'
   resources :categories
