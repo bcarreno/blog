@@ -4,7 +4,7 @@
   %table.form
     %tr.field
       %td= label_tag :username
-      %td= text_field_tag :username, params[:username]
+      %td= text_field_tag :username, params[:username], autofocus: true
     %tr.field
       %td= label_tag :password
       %td= password_field_tag :password
