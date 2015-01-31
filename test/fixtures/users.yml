@@ -2,11 +2,11 @@ regular:
   username: regular
   email: regular@test.com
   name: Regular User
-  password_digest: placeholder
+  password_digest: <%= BCrypt::Password.create('secret') %>
 
 admin:
   username: admin
   email: admin@test.com
   name: Admin User
-  password_digest: placeholder
+  password_digest: <%= BCrypt::Password.create('more secret') %>
   admin: true
