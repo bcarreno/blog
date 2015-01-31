@@ -1,4 +1,4 @@
-Blog4::Application.routes.draw do
+Rails.application.routes.draw do
 
   get 'viewer/about'
   get 'viewer/pgp_key'
@@ -8,12 +8,12 @@ Blog4::Application.routes.draw do
   get 'signup',           to: 'users#new',        as: 'signup'
   get 'login',            to: 'sessions#new',     as: 'login'
   get 'logout',           to: 'sessions#destroy', as: 'logout'
+  post 'sessions/create',                         as: 'sessions'
   get 'photos',           to: 'photos#index'
   get 'photos/*base',     to: 'photos#show'
   resources :categories
   resources :messages
   resources :pages
-  resources :sessions
   resources :users
   resources :articles do
     resources :comments
