@@ -30,7 +30,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'confirmation matches password' do
-    #### we have to make sure an empty pwd confirmation returns '' and not nil, otherwise the test isn't enough
     user = User.new(@user_attributes.merge(password_confirmation: 'different'))
     refute user.valid?
     assert_equal "doesn't match confirmation", user.errors[:password].first
