@@ -31,13 +31,13 @@ class SessionsControllerTest < ActionController::TestCase
 
   test "logout" do
     login_user(:regular)
-    get :destroy
+    delete :destroy
     assert_nil session[:user_id]
     assert_redirected_to root_path
   end
 
   test "logout without being logged in" do
-    get :destroy
+    delete :destroy
     assert_nil session[:user_id]
     assert_redirected_to root_path
   end

@@ -30,7 +30,7 @@
         - if current_user
           %ul#login
             %li= "Logged in as #{link_to(current_user.username, current_user)}".html_safe
-            %li= link_to 'Logout', logout_path
+            %li= link_to 'Logout', logout_path, method: :delete
 
         %ul#nav
           - menu.each do |m|
