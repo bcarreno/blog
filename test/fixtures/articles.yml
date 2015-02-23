@@ -1,7 +1,7 @@
-one:
-  title: one
-  body: body article one
+published:
+  title: Published Article
+  body: This is the body of the published article
 
-two:
-  title: two
-  body: body article two
+draft:
+  title: Draft Article
+  body: This is the body of the draft article

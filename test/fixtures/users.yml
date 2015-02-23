@@ -8,5 +8,5 @@ admin:
   username: admin
   email: admin@test.com
   name: Admin User
-  password_digest: <%= BCrypt::Password.create('more secret') %>
+  password_digest: <%= BCrypt::Password.create('top secret') %>
   admin: true
