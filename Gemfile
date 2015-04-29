@@ -14,13 +14,13 @@ gem 'slugged'
 gem 'kaminari'
 
 # syntax highlight
-gem 'nokogiri'
+gem 'nokogiri', '1.5.4' # bypass hardening issue on Ubuntu 14.04
 gem 'redcarpet'
 gem 'pygments.rb'   # no need to: sudo easy_install pygments
 gem 'bartt-ssl_requirement', '~>1.4.0', :require => 'ssl_requirement'
 
 group :development, :test do
-#  gem 'debugger'
+  gem 'debugger'
 end
 
 # Gems used only for assets and not required
