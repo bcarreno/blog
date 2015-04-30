@@ -2,19 +2,58 @@ require 'test_helper'
 
 class ArticlesControllerTest < ActionController::TestCase
   setup do
-    @article = articles(:one)
+    @article = articles(:published)
   end
 
-  test "should get index" do
+  test "get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:articles)
+    articles = assigns(:articles)
+    assert articles.include?(articles(:published))
+    refute articles.include?(articles(:draft))
   end
 
-  test "should get new" do
+  test "get index logged in as regular user" do
+    login_user(:regular)
+    get :index
+    articles = assigns(:articles)
+    assert articles.include?(articles(:published))
+    refute articles.include?(articles(:draft))
+  end
+
+  test "get index logged in as admin" do
+    login_user(:admin)
+    get :index
+    articles = assigns(:articles)
+    assert articles.include?(articles(:published))
+    assert articles.include?(articles(:draft))
+  end
+
+  test "get new" do
+    get :new
+    assert_redirected_to root_path
+    assert_nil assigns(:articles)
+  end
+
+  test "get new logged in as regular user" do
+    login_user(:regular)
+    get :new
+    assert_redirected_to root_path
+    assert_nil assigns(:articles)
+  end
+
+  test "get new logged in as admin" do
+    login_user(:admin)
     get :new
     assert_response :success
+    assert assigns(:articles)
   end
+end
+__END__
+
+
+
+
 
   test "should create article" do
     assert_difference('Article.count') do
