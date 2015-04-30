@@ -1,6 +1,7 @@
 published:
   title: Published Article
   body: This is the body of the published article
+  is_published: true
 
 draft:
   title: Draft Article
