@@ -16,7 +16,7 @@ gem 'kaminari'
 # syntax highlight
 gem 'nokogiri', '1.5.4' # bypass hardening issue on Ubuntu 14.04
 gem 'redcarpet'
-gem 'pygments.rb'   # no need to: sudo easy_install pygments
+gem 'coderay'
 gem 'bartt-ssl_requirement', '~>1.4.0', :require => 'ssl_requirement'
 
 group :development, :test do
