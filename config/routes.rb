@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'sandbox',          to: 'sandbox#index'
   get 'users/new'
   get 'login',            to: 'sessions#new',     as: 'login'
-  delete 'logout',        to: 'sessions#destroy', as: 'logout'
+  get 'logout',           to: 'sessions#destroy', as: 'logout'
   post 'sessions/create',                         as: 'sessions'
   get 'photos',           to: 'photos#index'
   get 'photos/*base',     to: 'photos#show'
