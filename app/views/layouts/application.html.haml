@@ -3,6 +3,8 @@
   %head
     %meta{:charset=>'utf-8'}
     %meta{:name=>'msapplication-config', :content=>'none'}
+
+
     %title= yield(:title) || "Untitled"
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
@@ -20,6 +22,9 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
     </script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
 
   %body
     #header_wrap.outer
