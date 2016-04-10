@@ -1,7 +1,7 @@
 module LayoutHelper
 
   def motto(smart_punctuation=true)
-    "A rubyist stranded on Martha#{smart_punctuation ? '&rsquo;' : "'"}s Vineyard".html_safe
+    "A geek stranded on Martha#{smart_punctuation ? '&rsquo;' : "'"}s Vineyard".html_safe
   end
 
   def set_title(page_title, show_title=true)
