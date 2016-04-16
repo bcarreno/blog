@@ -31,7 +31,7 @@ class ArticlesControllerTest < ActionController::TestCase
 
   test "get new" do
     get :new
-    assert_redirected_to root_path
+    assert_redirected_to login_path
     assert_nil assigns(:articles)
   end
 
@@ -46,14 +46,23 @@ class ArticlesControllerTest < ActionController::TestCase
     login_user(:admin)
     get :new
     assert_response :success
-    assert assigns(:articles)
+    assert assigns(:article)
+  end
+
+  test "GET show with comments" do
+    get :show, id: articles(:popular).to_param
+    assert_response :success
+    assert_select '#comments_count', '2 comments'
+  end
+
+  test "GET show no comments" do
+    get :show, id: @article.to_param
+    assert_response :success
+    assert_select '#comments_count', ''
   end
 end
+
 __END__
-
-
-
-
 
   test "should create article" do
     assert_difference('Article.count') do
@@ -61,11 +70,6 @@ __END__
     end
 
     assert_redirected_to article_path(assigns(:article))
-  end
-
-  test "should show article" do
-    get :show, id: @article
-    assert_response :success
   end
 
   test "should get edit" do

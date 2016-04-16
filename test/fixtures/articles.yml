@@ -3,6 +3,11 @@ published:
   body: This is the body of the published article
   is_published: true
 
+popular:
+  title: Popular Article
+  body: Lots of comments
+  is_published: true
+
 draft:
   title: Draft Article
   body: This is the body of the draft article
