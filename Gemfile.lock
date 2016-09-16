@@ -150,3 +150,9 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   slugged
   uglifier (>= 1.0.3)
+
+RUBY VERSION
+   ruby 1.9.3p484
+
+BUNDLED WITH
+   1.13.1
