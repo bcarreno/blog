@@ -11,6 +11,15 @@ class ArticlesControllerTest < ActionController::TestCase
     articles = assigns(:articles)
     assert articles.include?(articles(:published))
     refute articles.include?(articles(:draft))
+    assert_select '.article_body h1', false
+    assert_select '.article_body p', 'This is HTML'
+  end
+
+  test "get index article with markdown" do
+    @article.update_attributes! :markdown => true
+    get :index
+    assert_select '.article_body h1', 'This is markdown'
+    assert_select '.article_body p', 'This is HTML'
   end
 
   test "get index logged in as regular user" do
@@ -49,16 +58,42 @@ class ArticlesControllerTest < ActionController::TestCase
     assert assigns(:article)
   end
 
-  test "GET show with comments" do
-    get :show, id: articles(:popular).to_param
-    assert_response :success
-    assert_select '#comments_count', '2 comments'
-  end
-
-  test "GET show no comments" do
+  test "get show" do
     get :show, id: @article.to_param
     assert_response :success
+    assert_select '#comments_count', '2 comments'
+    assert_select '.article_body h1', false
+    assert_select '.article_body p', 'This is HTML'
+  end
+
+  test "get show article with markdown" do
+    @article.update_attributes! :markdown => true
+    get :show, id: @article.to_param
+    assert_select '.article_body h1', 'This is markdown'
+    assert_select '.article_body p', 'This is HTML'
+  end
+
+  test "get show without comments" do
+    get :show, id: articles(:unpopular).to_param
+    assert_response :success
     assert_select '#comments_count', ''
+  end
+
+  test "get show unpublished article" do
+    get :show, id: articles(:draft).to_param
+    assert_redirected_to articles_path
+  end
+
+  test "get show unpublished article logged in as regular user" do
+    login_user(:regular)
+    get :show, id: articles(:draft).to_param
+    assert_redirected_to articles_path
+  end
+
+  test "get show unpublished article logged in as admin" do
+    login_user(:admin)
+    get :show, id: articles(:draft).to_param
+    assert_response :success
   end
 end
 

@@ -13,7 +13,7 @@
 .date
   = l @article.created_at, :format => :long
 .article_body
-  ~ @article.markdown ? markdown(@article.body) : @article.body
+  ~ raw(@article.markdown ? markdown(@article.body) : @article.body)
 #comments
   %a{:id => 'comments', :name => 'comments'}
   %p#comments_count

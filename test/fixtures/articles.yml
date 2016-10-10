@@ -1,11 +1,11 @@
 published:
   title: Published Article
-  body: This is the body of the published article
+  body: "This is the body of the published article\n# This is markdown\n<p>This is HTML</p>"
   is_published: true
 
-popular:
-  title: Popular Article
-  body: Lots of comments
+unpopular:
+  title: Boring Article
+  body: No comments because nobody cares
   is_published: true
 
 draft:

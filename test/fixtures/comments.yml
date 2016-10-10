@@ -2,8 +2,8 @@ positive:
   name: John Good Guy
   email: good@example.com
   body: Very good article!
-  article: popular
+  article: published
 
 negative:
   body: What a piece of crap
-  article: popular
+  article: published
