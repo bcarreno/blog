@@ -120,25 +120,66 @@ class ArticlesControllerTest < ActionController::TestCase
     get :show, id: articles(:draft).to_param
     assert_response :success
   end
-end
 
-__END__
-
-  test "should get edit" do
+  test "get edit" do
     get :edit, id: @article
+    assert_redirected_to login_path
+    assert_nil assigns(:article)
+  end
+
+  test "get edit logged in as regular user" do
+    login_user(:regular)
+    get :edit, id: @article
+    assert_redirected_to root_path
+    assert_nil assigns(:article)
+  end
+
+  test "get edit logged in as admin" do
+    login_user(:admin)
+    get :edit, id: @article
+    assert_response :success
+    assert assigns(:article)
+  end
+
+  test "put update" do
+    put :update, id: @article, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
+    assert_redirected_to login_path
+    assert_nil assigns(:article)
+  end
+
+  test "put update logged in as regular user" do
+    login_user(:regular)
+    put :update, id: @article, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
+    assert_redirected_to root_path
+    assert_nil assigns(:article)
+  end
+
+  test "put update logged in as admin" do
+    login_user(:admin)
+    put :update, id: @article, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
     assert_response :success
   end
 
-  test "should update article" do
-    put :update, id: @article, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
-    assert_redirected_to article_path(assigns(:article))
+  test "delete destroy" do
+    assert_difference('Article.count', 0) do
+      delete :destroy, id: @article
+    end
+    assert_redirected_to login_path
   end
 
-  test "should destroy article" do
+  test "delete destroy logged in as regular user" do
+    login_user(:regular)
+    assert_difference('Article.count', 0) do
+      delete :destroy, id: @article
+    end
+    assert_redirected_to root_path
+  end
+
+  test "delete destroy logged in as admin" do
+    login_user(:admin)
     assert_difference('Article.count', -1) do
       delete :destroy, id: @article
     end
-
     assert_redirected_to articles_path
   end
 end
