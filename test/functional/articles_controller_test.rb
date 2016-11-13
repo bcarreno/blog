@@ -95,17 +95,34 @@ class ArticlesControllerTest < ActionController::TestCase
     get :show, id: articles(:draft).to_param
     assert_response :success
   end
-end
 
-__END__
+  test "post create" do
+    assert_difference('Article.count', 0) do
+      post :create, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
+    end
+    assert_redirected_to login_path
+    assert_nil assigns(:article)
+  end
 
-  test "should create article" do
+  test "post create logged in as regular user" do
+    login_user(:regular)
+    assert_difference('Article.count', 0) do
+      post :create, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
+    end
+    assert_redirected_to root_path
+    assert_nil assigns(:article)
+  end
+
+  test "post create logged in as admin" do
+    login_user(:admin)
     assert_difference('Article.count') do
       post :create, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
     end
-
     assert_redirected_to article_path(assigns(:article))
   end
+end
+
+__END__
 
   test "should get edit" do
     get :edit, id: @article
