@@ -49,18 +49,8 @@ Blog4::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
-
-  mailer = YAML::load File.read(Rails.root + 'config/mailer.yml')
-  ActionMailer::Base.smtp_settings = {
-    :address              => mailer['address'],
-    :port                 => 587,
-    :domain               => mailer['domain'],
-    :user_name            => mailer['user_name'],
-    :password             => mailer['password'],
-    :authentication       => "plain",
-    :enable_starttls_auto => true
-  }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = { :enable_starttls_auto => false }
 
   # Enable threaded mode
   # config.threadsafe!
