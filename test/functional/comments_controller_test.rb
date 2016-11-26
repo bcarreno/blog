@@ -2,19 +2,51 @@ require 'test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
   setup do
-    @comment = comments(:one)
+    @comment = comments(:positive)
   end
 
-  test "should get index" do
-    get :index
+  test "should create comment" do
+    assert_difference ['Comment.count', 'ActionMailer::Base.deliveries.size'], +1 do
+      post :create, article_id: @comment.article_id,
+                    comment: { body: @comment.body, email: @comment.email, name: @comment.name }
+    end
     assert_response :success
-    assert_not_nil assigns(:comments)
+    # check commented posted?
+  end
+end
+
+=begin
+  test "post create" do
+    assert_difference('Category.count', 0) do
+      post :create, category: { description: @category.description, name: @category.name }
+    end
+    assert_redirected_to login_path
+    assert_nil assigns(:category)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
+  test "post create logged in as regular user" do
+    login_user(:regular)
+    assert_difference('Category.count', 0) do
+      post :create, category: { description: @category.description, name: @category.name }
+    end
+    assert_redirected_to root_path
+    assert_nil assigns(:category)
   end
+
+  test "post create logged in as admin" do
+    login_user(:admin)
+    assert_difference('Category.count') do
+      post :create, category: { description: @category.description, name: @category.name }
+    end
+    assert_redirected_to category_path(assigns(:category))
+  end
+=end
+
+
+
+__END__
+
+
 
   test "should create comment" do
     assert_difference('Comment.count') do
