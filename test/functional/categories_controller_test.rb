@@ -71,47 +71,47 @@ class CategoriesControllerTest < ActionController::TestCase
   end
 
   test "get show" do
-    get :show, id: @category
+    get :show, id: @category.to_param
     assert_redirected_to login_path
     assert_nil assigns(:category)
   end
 
   test "get show logged in as regular user" do
     login_user(:regular)
-    get :show, id: @category
+    get :show, id: @category.to_param
     assert_redirected_to root_path
     assert_nil assigns(:category)
   end
 
   test "get show logged in as admin" do
     login_user(:admin)
-    get :show, id: @category
+    get :show, id: @category.to_param
     assert_response :success
     assert assigns(:category)
   end
 
   test "get edit" do
-    get :edit, id: @category
+    get :edit, id: @category.to_param
     assert_redirected_to login_path
     assert_nil assigns(:category)
   end
 
   test "get edit logged in as regular user" do
     login_user(:regular)
-    get :edit, id: @category
+    get :edit, id: @category.to_param
     assert_redirected_to root_path
     assert_nil assigns(:category)
   end
 
   test "get edit logged in as admin" do
     login_user(:admin)
-    get :edit, id: @category
+    get :edit, id: @category.to_param
     assert_response :success
     assert assigns(:category)
   end
 
   test "put update" do
-    put :update, id: @category, category: { description: @category.description, name: @category.name }
+    put :update, id: @category.to_param, category: { description: @category.description, name: @category.name }
     assert_redirected_to login_path
     assert_nil assigns(:category)
   end
@@ -131,7 +131,7 @@ class CategoriesControllerTest < ActionController::TestCase
 
   test "delete destroy" do
     assert_difference('Category.count', 0) do
-      delete :destroy, id: @category
+      delete :destroy, id: @category.to_param
     end
     assert_redirected_to login_path
   end
@@ -139,7 +139,7 @@ class CategoriesControllerTest < ActionController::TestCase
   test "delete destroy logged in as regular user" do
     login_user(:regular)
     assert_difference('Category.count', 0) do
-      delete :destroy, id: @category
+      delete :destroy, id: @category.to_param
     end
     assert_redirected_to root_path
   end
@@ -147,7 +147,7 @@ class CategoriesControllerTest < ActionController::TestCase
   test "delete destroy logged in as admin" do
     login_user(:admin)
     assert_difference('Category.count', -1) do
-      delete :destroy, id: @category
+      delete :destroy, id: @category.to_param
     end
     assert_redirected_to categories_path
   end
