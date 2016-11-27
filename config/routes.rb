@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :pages
   resources :users
   resources :articles do
-    resources :comments
+    resources :comments, only: [:edit, :create, :update, :destroy]
   end
 
   root :to => 'articles#index'

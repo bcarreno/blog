@@ -3,8 +3,13 @@ class CommentsController < ApplicationController
   before_filter :authorize_admin, :except => [:create]
   before_filter :find_article_with_comments
 
+  def edit
+    unless @article.comments_allowed
+      redirect_to article_url(@article, :anchor => 'comments')
+    end
+  end
+
   def create
-    logger.debug "zzz got to create, params: #{params}"
     if !@article.comments_allowed
       render :nothing => true
     else
@@ -20,6 +25,18 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      if @comment.update_attributes(params[:comment])
+        format.html { redirect_to(article_url(@comment.article), notice: 'Comment updated') }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @comment.destroy
     respond_to do |format|
@@ -31,7 +48,6 @@ class CommentsController < ApplicationController
   private
 
   def find_article_with_comments
-    logger.debug "zzz got to find_article_comment params #{params.inspect}"
     @article = Article.find_using_slug(params[:article_id])
     @comment = @article.comments.find(params[:id]) unless params[:id].nil?
   end
