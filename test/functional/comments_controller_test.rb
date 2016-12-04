@@ -6,12 +6,19 @@ class CommentsControllerTest < ActionController::TestCase
   end
 
   test "should create comment" do
-    assert_difference ['Comment.count', 'ActionMailer::Base.deliveries.size'], +1 do
-      post :create, article_id: @comment.article_id,
-                    comment: { body: @comment.body, email: @comment.email, name: @comment.name }
+    assert_difference ['@comment.article.comments.count', 'ActionMailer::Base.deliveries.size'], +1 do
+      post :create, article_id: @comment.article.to_param,
+        comment: { body: 'yet another comment', email: 'author@example.com', name: 'Charlie Commenter' }
     end
     assert_response :success
-    # check commented posted????
+    assert_select 'div.comment', /yet another comment/
+
+    notification_email = ActionMailer::Base.deliveries.last
+    assert_equal 'New comment',         notification_email.subject
+    assert_equal 'braulio@carreno.me',  notification_email.to[0]
+    assert_equal 'braulio@carreno.me',  notification_email.from[0]
+    assert_match(/author@example.com/,  notification_email.body.to_s)
+    assert_match(/yet another comment/, notification_email.body.to_s)
   end
 
   test "get edit" do
@@ -62,8 +69,9 @@ class CommentsControllerTest < ActionController::TestCase
 
   test "put update logged in as admin" do
     login_user(:admin)
-    put :update, article_id: @comment.article.to_param, id: @comment.to_param
+    put :update, article_id: @comment.article.to_param, id: @comment.to_param, comment: { body: 'amended text' }
     assert_redirected_to article_path(@comment.article)
+    assert_equal 'amended text', @comment.reload.body
   end
 
   test 'put update comments closed' do
@@ -96,7 +104,7 @@ class CommentsControllerTest < ActionController::TestCase
 
   test "delete destroy logged in as admin" do
     login_user(:admin)
-    assert_difference('Comment.count', -1) do
+    assert_difference('@comment.article.comments.count', -1) do
       delete :destroy, article_id: @comment.article.to_param, id: @comment.to_param
     end
     assert_redirected_to article_path(@comment.article, :anchor => 'comments')
