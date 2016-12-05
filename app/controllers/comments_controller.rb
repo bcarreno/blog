@@ -13,15 +13,16 @@ class CommentsController < ApplicationController
     if !@article.comments_allowed
       render :nothing => true
     else
+      spam = params.delete(:subject).present?
       @comment = @article.comments.new(params[:comment])
-      if params[:subject].blank?
+      if !spam
         saved = @comment.save
       else
         saved = true
-        logger.info "Honeypot Captcha Spam comment: #{params[:subject]}, #{params[:comment].inspect}"
+        logger.info "Honeypot Captcha Spam comment: #{params[:comment].inspect}"
       end
       render :partial => saved ? 'comment' : 'form', :locals => {:article => @article, :comment => @comment}
-      Notification.new_comment(@comment).deliver if saved && params[:subject].blank?
+      Notification.new_comment(@comment).deliver if saved && !spam
     end
   end
 

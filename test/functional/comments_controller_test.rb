@@ -5,20 +5,29 @@ class CommentsControllerTest < ActionController::TestCase
     @comment = comments(:positive)
   end
 
-  test "should create comment" do
+  test 'post create' do
     assert_difference ['@comment.article.comments.count', 'ActionMailer::Base.deliveries.size'], +1 do
       post :create, article_id: @comment.article.to_param,
-        comment: { body: 'yet another comment', email: 'author@example.com', name: 'Charlie Commenter' }
+        comment: { body: 'you made a typo', email: 'linguist@example.com', name: 'Louise Linguist' }
     end
     assert_response :success
-    assert_select 'div.comment', /yet another comment/
+    assert_select 'div.comment', /you made a typo/
 
     notification_email = ActionMailer::Base.deliveries.last
-    assert_equal 'New comment',         notification_email.subject
-    assert_equal 'braulio@carreno.me',  notification_email.to[0]
-    assert_equal 'braulio@carreno.me',  notification_email.from[0]
-    assert_match(/author@example.com/,  notification_email.body.to_s)
-    assert_match(/yet another comment/, notification_email.body.to_s)
+    assert_equal 'New comment',          notification_email.subject
+    assert_equal 'braulio@carreno.me',   notification_email.to[0]
+    assert_equal 'braulio@carreno.me',   notification_email.from[0]
+    assert_match(/linguist@example.com/, notification_email.body.to_s)
+    assert_match(/you made a typo/,      notification_email.body.to_s)
+  end
+
+  test 'deceive spam' do
+    assert_difference ['@comment.article.comments.count', 'ActionMailer::Base.deliveries.size'], 0 do
+      post :create, article_id: @comment.article.to_param, subject: 'negative captcha',
+        comment: { body: 'you made a typo', email: 'linguist@example.com', name: 'Louise Linguist' }
+    end
+    assert_response :success
+    assert_select 'div.comment', /you made a typo/
   end
 
   test "get edit" do
