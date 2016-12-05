@@ -14,7 +14,7 @@ class CategoryTest < ActiveSupport::TestCase
     category = Category.new(name: 'Horror', description: 'Terror & Horror')
     assert category.valid?
     assert_difference('Category.count') do
-      assert category.save
+      assert category.save!
     end
   end
 
