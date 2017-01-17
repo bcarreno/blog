@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'photos',           to: 'photos#index'
   get 'photos/*base',     to: 'photos#show'
   resources :categories
-  resources :messages
+  resources :messages, only: :create
   resources :pages
   resources :users
   resources :articles do

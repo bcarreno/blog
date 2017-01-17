@@ -4,9 +4,6 @@ class CommentsController < ApplicationController
   before_filter :find_article_with_comments
 
   def edit
-    unless @article.comments_allowed
-      redirect_to article_url(@article, :anchor => 'comments')
-    end
   end
 
   def create

@@ -1,74 +1,26 @@
 class MessagesController < ApplicationController
 
-  before_filter :authorize_admin, :except => [:create]
-
-  def index
-    @messages = Message.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @messages }
-    end
-  end
-
-  def show
-    @message = Message.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @message }
-    end
-  end
-
-  def new
-    @message = Message.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @message }
-    end
-  end
-
-  def edit
-    @message = Message.find(params[:id])
-  end
+  #REFACTOR ME
+  #THE COMMENTS TOO!
 
   def create
     @message = Message.new(params[:message])
-    if params[:subject].present? || @message.save
-      if params[:subject].present?
-        logger.info "Honeypot Captcha Spam: #{params[:subject]}, #{params[:message].inspect}"
-      else
-        Notification.new_message(@message).deliver
-      end
-      flash.notice = "I'll get back to you as soon as I can, thanks."
-      redirect_to viewer_about_url
-    else
-      render 'viewer/about'
-    end
-  end
-
-  def update
-    @message = Message.find(params[:id])
-
+    saved = if params[:subject].present?
+              logger.info "Honeypot Captcha Spam: #{params[:subject]}, #{params[:message].inspect}"
+              true
+            else
+              @message.save
+            end
     respond_to do |format|
-      if @message.update_attributes(params[:message])
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
-        format.json { head :no_content }
+      if saved
+        format.html { redirect_to viewer_about_url, notice: "I'll get back to you as soon as I can, thanks." }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        format.html { render 'viewer/about' }
       end
     end
-  end
 
-  def destroy
-    @message = Message.find(params[:id])
-    @message.destroy
-
-    respond_to do |format|
-      format.html { redirect_to messages_url }
-      format.json { head :no_content }
+    if params[:subject].blank? && saved
+      Notification.new_message(@message).deliver
     end
   end
 end

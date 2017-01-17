@@ -21,13 +21,22 @@ class CommentsControllerTest < ActionController::TestCase
     assert_match(/you made a typo/,      notification_email.body.to_s)
   end
 
-  test 'deceive spam' do
-    assert_difference ['@comment.article.comments.count', 'ActionMailer::Base.deliveries.size'], 0 do
-      post :create, article_id: @comment.article.to_param, subject: 'negative captcha',
-        comment: { body: 'you made a typo', email: 'linguist@example.com', name: 'Louise Linguist' }
+  test 'post create insufficient params' do
+    assert_difference ['Comment.count', 'ActionMailer::Base.deliveries.size'], 0 do
+      post :create, article_id: @comment.article.to_param,
+        comment: { name: 'Louise Linguist' }
     end
     assert_response :success
-    assert_select 'div.comment', /you made a typo/
+    assert_match /can't be blank/, assigns(:comment).errors[:body].to_s
+  end
+
+  test 'deceive spam' do
+    assert_difference ['Comment.count', 'ActionMailer::Base.deliveries.size'], 0 do
+      post :create, article_id: @comment.article.to_param, subject: 'viagra on sale',
+        comment: { body: '50% off', email: 'linguist@example.com', name: 'Louise Linguist' }
+    end
+    assert_response :success
+    assert_select 'div.comment', /50% off/
   end
 
   test "get edit" do
@@ -48,13 +57,6 @@ class CommentsControllerTest < ActionController::TestCase
     get :edit, article_id: @comment.article.to_param, id: @comment.to_param
     assert_response :success
     assert assigns(:comment)
-  end
-
-  test 'get edit comments closed' do
-    login_user(:admin)
-    @comment.article.update_attributes!(comments_allowed: false)
-    get :edit, article_id: @comment.article.to_param, id: @comment.to_param
-    assert_redirected_to article_path(@comment.article, :anchor => 'comments')
   end
 
   test 'get edit comment does not belong to article' do
@@ -81,13 +83,6 @@ class CommentsControllerTest < ActionController::TestCase
     put :update, article_id: @comment.article.to_param, id: @comment.to_param, comment: { body: 'amended text' }
     assert_redirected_to article_path(@comment.article)
     assert_equal 'amended text', @comment.reload.body
-  end
-
-  test 'put update comments closed' do
-    login_user(:admin)
-    @comment.article.update_attributes!(comments_allowed: false)
-    put :update, article_id: @comment.article.to_param, id: @comment.to_param
-    assert_redirected_to article_path(@comment.article.to_param)
   end
 
   test 'put update comment does not belong to article' do
