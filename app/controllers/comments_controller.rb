@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
         saved = @comment.save
       else
         saved = true
-        logger.info "Honeypot Captcha Spam comment: #{params[:comment].inspect}"
+        logger.info "honeypot captcha spam comment: #{params[:comment].inspect}"
       end
       render :partial => saved ? 'comment' : 'form', :locals => {:article => @article, :comment => @comment}
       Notification.new_comment(@comment).deliver if saved && !spam

@@ -1,16 +1,15 @@
 class MessagesController < ApplicationController
 
-  #REFACTOR ME
-  #THE COMMENTS TOO!
-
   def create
+    spam = params.delete(:subject).present?
     @message = Message.new(params[:message])
-    saved = if params[:subject].present?
-              logger.info "Honeypot Captcha Spam: #{params[:subject]}, #{params[:message].inspect}"
-              true
-            else
-              @message.save
-            end
+    if !spam
+      saved = @message.save
+    else
+      saved = true
+      logger.info "honeypot captcha spam message: #{params[:message].inspect}"
+    end
+
     respond_to do |format|
       if saved
         format.html { redirect_to viewer_about_url, notice: "I'll get back to you as soon as I can, thanks." }
@@ -19,8 +18,6 @@ class MessagesController < ApplicationController
       end
     end
 
-    if params[:subject].blank? && saved
-      Notification.new_message(@message).deliver
-    end
+    Notification.new_message(@message).deliver if saved && !spam
   end
 end

@@ -25,7 +25,7 @@ class MessagesControllerTest < ActionController::TestCase
     assert_match /can't be blank/, assigns(:message).errors[:body].to_s
   end
 
-  test 'deceive spam' do
+  test 'honeypot captcha spam' do
     assert_difference ['Message.count', 'ActionMailer::Base.deliveries.size'], 0 do
       post :create, subject: 'viagra on sale',
                     message: { body: 'This is the body', email: 'test@example.com' }
