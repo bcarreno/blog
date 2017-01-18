@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get 'photos/*base',     to: 'photos#show'
   resources :categories
   resources :messages, only: :create
-  resources :pages
   resources :users
   resources :articles do
     resources :comments, only: [:edit, :create, :update, :destroy]
