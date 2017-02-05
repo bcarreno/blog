@@ -32,7 +32,6 @@ module ApplicationHelper
       {:label => 'PGP Key', :path => viewer_pgp_key_path, :access => :public, :action => 'pgp_key'},
       {:label => 'About',   :path => viewer_about_path,   :access => :public, :action => 'about'},
       {:label => 'Videos',  :path => viewer_videos_path,  :access => :connected, :action => 'videos'},
-#      {:label => 'Sandbox', :path => viewer_sandbox_path, :access => :admin, :action => 'sandbox'},
     ]
   end
 

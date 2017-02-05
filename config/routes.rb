@@ -2,9 +2,7 @@ Rails.application.routes.draw do
 
   get 'viewer/about'
   get 'viewer/pgp_key'
-  get 'viewer/sandbox'
   get 'viewer/videos'
-  get 'sandbox',          to: 'sandbox#index'
   get 'users/new'
   get 'login',            to: 'sessions#new',     as: 'login'
   get 'logout',           to: 'sessions#destroy', as: 'logout'

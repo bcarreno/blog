@@ -11,9 +11,4 @@ class ViewerControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get sandbox" do
-    get :sandbox
-    assert_response :success
-  end
-
 end
