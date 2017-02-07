@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 
 gem 'rails', '3.2.13'
 
@@ -20,7 +20,7 @@ gem 'coderay'
 gem 'bartt-ssl_requirement', '~>1.4.0', :require => 'ssl_requirement'
 
 group :development, :test do
-  gem 'debugger'
+  gem 'byebug'
 end
 
 # Gems used only for assets and not required
