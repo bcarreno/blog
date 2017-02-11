@@ -16,5 +16,6 @@
 
 /extras
 /private
+/public/assets
 
 /config/*.yml
