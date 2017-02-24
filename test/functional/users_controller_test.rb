@@ -56,7 +56,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "post create should not allow to create an admin user" do
     login_user(:admin)
-    assert_raises(ActiveModel::MassAssignmentSecurity::Error) do
+    assert_raises(ActionController::UnpermittedParameters) do
       post :create, user: @user_attributes.merge(admin: true)
     end
   end

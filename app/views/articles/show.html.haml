@@ -4,7 +4,7 @@
   #content_menu
     = link_to 'Edit', edit_article_path(@article)
     \|
-    = link_to 'Destroy', @article, :confirm => 'Are you sure?', :method => :delete
+    = link_to 'Destroy', @article, data: { confirm: 'Are you sure?' }, :method => :delete
     \|
     = link_to 'New article', new_article_path
     \|

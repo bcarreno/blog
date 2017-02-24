@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
       render :nothing => true
     else
       spam = params.delete(:subject).present?
-      @comment = @article.comments.new(params[:comment])
+      @comment = @article.comments.new(comment_params)
       if !spam
         saved = @comment.save
       else
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @comment.update_attributes(params[:comment])
+      if @comment.update_attributes(comment_params)
         format.html { redirect_to(article_url(@comment.article), notice: 'Comment updated') }
         format.json { head :no_content }
       else
@@ -50,4 +50,7 @@ class CommentsController < ApplicationController
     @comment = @article.comments.find(params[:id]) unless params[:id].nil?
   end
 
+  def comment_params
+    params.require(:comment).permit(:article_id, :body, :email, :name, :created_at)
+  end
 end

@@ -32,7 +32,7 @@ class UserTest < ActiveSupport::TestCase
   test 'confirmation matches password' do
     user = User.new(@user_attributes.merge(password_confirmation: 'different'))
     refute user.valid?
-    assert_equal "doesn't match confirmation", user.errors[:password].first
+    assert_equal "doesn't match Password", user.errors[:password_confirmation].first
   end
 
   test 'digests should be different for the same password' do

@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '3.2.22.5'
-
-# Bundle edge Rails instead:
-# gem 'rails', git: 'git://github.com/rails/rails.git'
-
+gem 'rails', '4.0.13'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'pg'
 gem 'jquery-rails'
 gem 'haml'
@@ -23,20 +22,8 @@ group :development, :test do
   gem 'byebug'
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', platform: :ruby
-
-  gem 'uglifier'
-end
-
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

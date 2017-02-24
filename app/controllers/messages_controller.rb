@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
 
   def create
     spam = params.delete(:subject).present?
-    @message = Message.new(params[:message])
+    @message = Message.new(message_params)
     if !spam
       saved = @message.save
     else
@@ -19,5 +19,11 @@ class MessagesController < ApplicationController
     end
 
     Notification.new_message(@message).deliver if saved && !spam
+  end
+
+  private
+
+  def message_params
+    params.require(:message).permit(:body, :email, :name)
   end
 end

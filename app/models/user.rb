@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :name, :password, :password_confirmation
   has_secure_password
 
   validates_presence_of :email, :name, :username

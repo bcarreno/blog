@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(params[:article])
+    @article = Article.new(article_params)
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
   def update
     if @article.nil?
       redirect_to articles_url, :notice => 'Article not found'
-    else @article.update_attributes(params[:article])
+    else @article.update_attributes(article_params)
       render action: "edit"
     end
   end
@@ -74,4 +74,9 @@ class ArticlesController < ApplicationController
     end
   end
 
+  private
+
+  def article_params
+    params.require(:article).permit(:body, :keywords, :title, :created_at, :category_ids, :is_published, :comments_allowed, :markdown, :cached_slug, :comments_attributes)
+  end
 end
