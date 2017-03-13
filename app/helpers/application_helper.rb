@@ -20,7 +20,8 @@ module ApplicationHelper
       :autolink => true,
       :strikethrough => true,
       :lax_html_blocks => true,
-      :superscript => true
+      :footnotes => true,
+      :superscript => true,
     }
     markdown_to_html = Redcarpet::Markdown.new(renderer, options)
     markdown_to_html.render(text).html_safe
