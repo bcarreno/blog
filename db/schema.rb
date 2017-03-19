@@ -9,69 +9,72 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170118032657) do
+ActiveRecord::Schema.define(version: 20170118032657) do
 
-  create_table "articles", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "articles", force: true do |t|
     t.string   "title"
     t.string   "keywords"
     t.text     "body"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.boolean  "markdown",         :default => false, :null => false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "markdown",         default: false, null: false
     t.string   "cached_slug"
-    t.boolean  "is_published",     :default => false, :null => false
-    t.boolean  "comments_allowed", :default => true,  :null => false
+    t.boolean  "is_published",     default: false, null: false
+    t.boolean  "comments_allowed", default: true,  null: false
   end
 
-  add_index "articles", ["cached_slug"], :name => "index_articles_on_cached_slug"
+  add_index "articles", ["cached_slug"], name: "index_articles_on_cached_slug", using: :btree
 
-  create_table "articles_categories", :id => false, :force => true do |t|
-    t.integer "article_id",  :null => false
-    t.integer "category_id", :null => false
+  create_table "articles_categories", id: false, force: true do |t|
+    t.integer "article_id",  null: false
+    t.integer "category_id", null: false
   end
 
-  create_table "categories", :force => true do |t|
-    t.string   "name",        :null => false
+  create_table "categories", force: true do |t|
+    t.string   "name",        null: false
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  create_table "comments", :force => true do |t|
+  create_table "comments", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.text     "body"
-    t.integer  "article_id", :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "article_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "messages", :force => true do |t|
+  create_table "messages", force: true do |t|
     t.string   "email"
     t.text     "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "username",                           :null => false
-    t.string   "email",                              :null => false
-    t.string   "name",                               :null => false
-    t.string   "password_digest",                    :null => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.boolean  "admin",           :default => false, :null => false
+  create_table "users", force: true do |t|
+    t.string   "username",                        null: false
+    t.string   "email",                           null: false
+    t.string   "name",                            null: false
+    t.string   "password_digest",                 null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "admin",           default: false, null: false
   end
 
-  create_table "videos", :force => true do |t|
-    t.string   "title",                         :null => false
-    t.string   "youtube_id",                    :null => false
+  create_table "videos", force: true do |t|
+    t.string   "title",                      null: false
+    t.string   "youtube_id",                 null: false
     t.integer  "duration"
-    t.boolean  "is_hd",      :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "is_hd",      default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end
