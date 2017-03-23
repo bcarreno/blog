@@ -15,8 +15,8 @@ class CommentsControllerTest < ActionController::TestCase
 
     notification_email = ActionMailer::Base.deliveries.last
     assert_equal 'New comment',          notification_email.subject
-    assert_equal 'braulio@carreno.me',   notification_email.to[0]
-    assert_equal 'braulio@carreno.me',   notification_email.from[0]
+    assert_equal 'target@example.com',   notification_email.to[0]
+    assert_equal 'origin@example.com',   notification_email.from[0]
     assert_match(/linguist@example.com/, notification_email.body.to_s)
     assert_match(/you made a typo/,      notification_email.body.to_s)
   end

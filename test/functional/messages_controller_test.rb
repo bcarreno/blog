@@ -11,8 +11,8 @@ class MessagesControllerTest < ActionController::TestCase
 
     message_email = ActionMailer::Base.deliveries.last
     assert_equal 'New message',        message_email.subject
-    assert_equal 'braulio@carreno.me', message_email.to[0]
-    assert_equal 'braulio@carreno.me', message_email.from[0]
+    assert_equal 'target@example.com', message_email.to[0]
+    assert_equal 'origin@example.com', message_email.from[0]
     assert_match(/test@example.com/,   message_email.body.to_s)
     assert_match(/This is the body/,   message_email.body.to_s)
   end

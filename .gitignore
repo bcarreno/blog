@@ -16,7 +16,6 @@
 
 .byebug_history
 /config/*.yml
-/config/initializers/secret_token.rb
 /extras
 /private
 /public/assets

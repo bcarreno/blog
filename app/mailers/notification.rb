@@ -1,6 +1,4 @@
 class Notification < ActionMailer::Base
-  mailer = YAML::load File.read(Rails.root + 'config/mailer.yml')
-  default :from => mailer['user_name'], :to => mailer['user_name']
 
   def new_comment(comment)
     @comment = comment
