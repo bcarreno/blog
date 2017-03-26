@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
         logger.info "honeypot captcha spam comment: #{params[:comment].inspect}"
       end
       render :partial => saved ? 'comment' : 'form', :locals => {:article => @article, :comment => @comment}
-      Notification.new_comment(@comment).deliver if saved && !spam
+      Notification.new_comment(@comment).deliver_now if saved && !spam
     end
   end
 

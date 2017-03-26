@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '4.1.16'
+gem 'rails', '4.2.0'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -11,6 +11,7 @@ gem 'haml'
 gem 'haml-rails' # no need to call config.generators
 gem 'slugged'
 gem 'kaminari'
+gem 'bcrypt'
 
 # syntax highlight
 gem 'nokogiri'
@@ -21,9 +22,6 @@ gem 'bartt-ssl_requirement', require: 'ssl_requirement'
 group :development, :test do
   gem 'byebug'
 end
-
-# To use ActiveModel has_secure_password
-gem 'bcrypt'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

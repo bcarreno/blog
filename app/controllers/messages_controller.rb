@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
       end
     end
 
-    Notification.new_message(@message).deliver if saved && !spam
+    Notification.new_message(@message).deliver_now if saved && !spam
   end
 
   private
