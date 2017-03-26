@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-  ssl_exceptions if production?
-
   def new
   end
 

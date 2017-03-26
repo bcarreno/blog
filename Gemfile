@@ -17,7 +17,6 @@ gem 'bcrypt'
 gem 'nokogiri'
 gem 'redcarpet'
 gem 'coderay'
-gem 'bartt-ssl_requirement', require: 'ssl_requirement'
 
 group :development, :test do
   gem 'byebug'

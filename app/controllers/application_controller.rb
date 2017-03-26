@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
 
-  include ::SslRequirement
   protect_from_forgery
   rescue_from ActiveRecord::RecordNotFound,         :with => :render_404
   rescue_from ActionController::MissingFile,        :with => :render_404

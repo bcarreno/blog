@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
   before_filter :authorize_admin
-  ssl_exceptions if production?
 
   def new
     @user = User.new
