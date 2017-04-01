@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   get 'login',            to: 'sessions#new',     as: 'login'
   get 'logout',           to: 'sessions#destroy', as: 'logout'
   post 'sessions/create',                         as: 'sessions'
-  get 'photos',           to: 'photos#index'
-  get 'photos/*base',     to: 'photos#show'
   resources :categories
   resources :messages, only: :create
   resources :users
