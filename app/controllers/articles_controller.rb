@@ -67,11 +67,8 @@ class ArticlesController < ApplicationController
   private
 
   def find_article
-    begin
-      @article = Article.visibles(current_user).find_using_slug(params[:id])
-    rescue
-      @article = nil
-    end
+    @article = Article.find_using_slug(params[:id])
+    @article = (@article && @article.visible?(current_user)) ? @article : nil
   end
 
   private

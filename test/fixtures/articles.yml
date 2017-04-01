@@ -2,6 +2,7 @@ published:
   title: Published Article
   body: "This is the body of the published article\n# This is markdown\n<p>This is HTML</p>"
   is_published: true
+  cached_slug: 'published-article'
 
 unpopular:
   title: Boring Article

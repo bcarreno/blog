@@ -109,6 +109,16 @@ class ArticlesControllerTest < ActionController::TestCase
     assert_redirected_to articles_path
   end
 
+  test 'get show article by slug' do
+    get :show, id: 'published-article'
+    assert_response :success
+  end
+
+  test 'get show non-existent article' do
+    get :show, id: 'foo'
+    assert_redirected_to articles_url
+  end
+
   test "get show unpublished article logged in as regular user" do
     login_user(:regular)
     get :show, id: articles(:draft).to_param

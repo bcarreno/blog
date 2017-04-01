@@ -12,4 +12,8 @@ class Article < ActiveRecord::Base
       self.where(:is_published => true)
     end
   end
+
+  def visible?(user=nil)
+    is_published || user.try(:admin)
+  end
 end
