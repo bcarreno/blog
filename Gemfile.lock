@@ -170,7 +170,7 @@ DEPENDENCIES
   uglifier
 
 RUBY VERSION
-   ruby 2.2.0p0
+   ruby 2.2.7p470
 
 BUNDLED WITH
    1.14.6
