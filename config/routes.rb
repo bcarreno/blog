@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments, only: [:edit, :create, :update, :destroy]
   end
+  post 'webhookendpoint', to: 'webhookendpoint#create', as: 'webhookendpoint'
 
   root :to => 'articles#index'
 
