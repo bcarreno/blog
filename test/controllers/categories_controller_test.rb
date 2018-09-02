@@ -110,22 +110,22 @@ class CategoriesControllerTest < ActionController::TestCase
     assert assigns(:category)
   end
 
-  test "put update" do
-    put :update, id: @category.to_param, category: { description: @category.description, name: @category.name }
+  test "patch update" do
+    patch :update, id: @category.to_param, category: { description: @category.description, name: @category.name }
     assert_redirected_to login_path
     assert_nil assigns(:category)
   end
 
-  test "put update logged in as regular user" do
+  test "patch update logged in as regular user" do
     login_user(:regular)
-    put :update, id: @category, category: { description: @category.description, name: @category.name }
+    patch :update, id: @category, category: { description: @category.description, name: @category.name }
     assert_redirected_to root_path
     assert_nil assigns(:category)
   end
 
-  test "put update logged in as admin" do
+  test "patch update logged in as admin" do
     login_user(:admin)
-    put :update, id: @category, category: { description: @category.description, name: @category.name }
+    patch :update, id: @category, category: { description: @category.description, name: @category.name }
     assert_redirected_to category_path(assigns(:category))
   end
 

@@ -65,29 +65,29 @@ class CommentsControllerTest < ActionController::TestCase
     assert_response :missing
   end
 
-  test "put update" do
-    put :update, article_id: @comment.article.to_param, id: @comment.to_param
+  test "patch update" do
+    patch :update, article_id: @comment.article.to_param, id: @comment.to_param
     assert_redirected_to login_path
     assert_nil assigns(:comment)
   end
 
-  test "put update logged in as regular user" do
+  test "patch update logged in as regular user" do
     login_user(:regular)
-    put :update, article_id: @comment.article.to_param, id: @comment.to_param
+    patch :update, article_id: @comment.article.to_param, id: @comment.to_param
     assert_redirected_to root_path
     assert_nil assigns(:comment)
   end
 
-  test "put update logged in as admin" do
+  test "patch update logged in as admin" do
     login_user(:admin)
-    put :update, article_id: @comment.article.to_param, id: @comment.to_param, comment: { body: 'amended text' }
+    patch :update, article_id: @comment.article.to_param, id: @comment.to_param, comment: { body: 'amended text' }
     assert_redirected_to article_path(@comment.article)
     assert_equal 'amended text', @comment.reload.body
   end
 
-  test 'put update comment does not belong to article' do
+  test 'patch update comment does not belong to article' do
     login_user(:admin)
-    put :update, article_id: articles(:unpopular).to_param, id: @comment.to_param
+    patch :update, article_id: articles(:unpopular).to_param, id: @comment.to_param
     assert_response :missing
   end
 

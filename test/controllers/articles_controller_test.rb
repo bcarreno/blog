@@ -151,22 +151,22 @@ class ArticlesControllerTest < ActionController::TestCase
     assert assigns(:article)
   end
 
-  test "put update" do
-    put :update, id: @article, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
+  test "patch update" do
+    patch :update, id: @article, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
     assert_redirected_to login_path
     assert_nil assigns(:article)
   end
 
-  test "put update logged in as regular user" do
+  test "patch update logged in as regular user" do
     login_user(:regular)
-    put :update, id: @article, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
+    patch :update, id: @article, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
     assert_redirected_to root_path
     assert_nil assigns(:article)
   end
 
-  test "put update logged in as admin" do
+  test "patch update logged in as admin" do
     login_user(:admin)
-    put :update, id: @article, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
+    patch :update, id: @article, article: { body: @article.body, keywords: @article.keywords, title: @article.title }
     assert_response :success
   end
 
