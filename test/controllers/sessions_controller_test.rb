@@ -20,12 +20,12 @@ class SessionsControllerTest < ActionController::TestCase
 
   # what if already logged in? (make new test)
   test "login with correct credentials" do
-    post :create, username: @user.username, password: 'secret'
+    post :create, params: { username: @user.username, password: 'secret' }
     assert_equal @user.id, session[:user_id]
   end
 
   test "login with bad credentials" do
-    post :create, username: @user.username, password: 'bad secret'
+    post :create, params: { username: @user.username, password: 'bad secret' }
     assert_nil session[:user_id]
   end
 

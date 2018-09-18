@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
-  before_filter :authorize_admin, :except => [:index, :show]
-  before_filter :find_article, :only => [:show, :edit, :update, :destroy]
+  before_action :authorize_admin, :except => [:index, :show]
+  before_action :find_article, :only => [:show, :edit, :update, :destroy]
 
   def index
     @articles = Article.visibles(current_user).order('created_at desc').page params[:page]

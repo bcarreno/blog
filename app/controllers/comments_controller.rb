@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
-  before_filter :authorize_admin, :except => [:create]
-  before_filter :find_article_with_comments
+  before_action :authorize_admin, :except => [:create]
+  before_action :find_article_with_comments
 
   def edit
   end
