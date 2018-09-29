@@ -16,7 +16,7 @@ gem 'rails', '5.0.0'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
-gem 'pg', '~> 0.19'  # restrict version until fix with rails 5.1
+gem 'pg', '0.20'  # restrict version until fix with rails 5.1
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails' # no need to call config.generators

@@ -103,7 +103,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
-    pg (0.21.0)
+    pg (0.20.0)
     rack (2.0.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -189,7 +189,7 @@ DEPENDENCIES
   kaminari
   minitest (~> 5.1)
   nokogiri
-  pg (~> 0.19)
+  pg (= 0.20)
   rails (= 5.0.0)
   redcarpet
   sass-rails
