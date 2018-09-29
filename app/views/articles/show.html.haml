@@ -26,7 +26,7 @@
 
   -# NOTE we don't build a new comment attached to @article, i.e. we don't modify the collection @article.comments
   -#      this what Steve Klabnik talks here: https://gist.github.com/2379785
-  - comment = Comment.new({:article => @article}, :without_protection => true)
+  - comment = Comment.new(:article => @article)
   #new_comment
     = render :partial => 'comments/form', :locals => {:article => @article, :comment => comment}
 
