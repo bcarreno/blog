@@ -1,11 +1,22 @@
 source 'https://rubygems.org'
 ruby '2.3.7'
 
-gem 'rails', '4.2.10'
+#
+# rails has a bug with minitest 5.10.
+# Fixed with Rails 5.2
+# workaround is to downgrade to minitest 5.1
+# there are 2 changes
+# first in Gemfile.lock
+# -    minitest (5.10.3)
+# +    minitest (5.1.0)
+# then adding the following line
+gem 'minitest', '~> 5.1'
+
+gem 'rails', '5.0.0'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
-gem 'pg'
+gem 'pg', '~> 0.19'  # restrict version until fix with rails 5.1
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails' # no need to call config.generators
