@@ -7,7 +7,7 @@ ruby '2.3.7'
 # workaround is to downgrade to minitest 5.1
 # there are 2 changes
 # first in Gemfile.lock
-# -    minitest (5.10.3)
+# -    minitest (5.11.3)
 # +    minitest (5.1.0)
 # then adding the following line
 gem 'minitest', '~> 5.1'
