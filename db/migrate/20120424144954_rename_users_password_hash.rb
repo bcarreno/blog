@@ -1,4 +1,4 @@
-class RenameUsersPasswordHash < ActiveRecord::Migration
+class RenameUsersPasswordHash < ActiveRecord::Migration[4.2]
   def up
     rename_column :users, :password_hash, :password_digest
   end

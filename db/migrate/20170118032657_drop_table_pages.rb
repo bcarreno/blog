@@ -1,4 +1,4 @@
-class DropTablePages < ActiveRecord::Migration
+class DropTablePages < ActiveRecord::Migration[4.2]
   def up
     drop_table :pages
   end

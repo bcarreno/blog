@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -26,9 +25,8 @@ ActiveRecord::Schema.define(version: 20170118032657) do
     t.string   "cached_slug",      limit: 255
     t.boolean  "is_published",                 default: false, null: false
     t.boolean  "comments_allowed",             default: true,  null: false
+    t.index ["cached_slug"], name: "index_articles_on_cached_slug", using: :btree
   end
-
-  add_index "articles", ["cached_slug"], name: "index_articles_on_cached_slug", using: :btree
 
   create_table "articles_categories", id: false, force: :cascade do |t|
     t.integer "article_id",  null: false

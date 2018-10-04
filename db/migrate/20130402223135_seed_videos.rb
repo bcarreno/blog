@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class SeedVideos < ActiveRecord::Migration
+class SeedVideos < ActiveRecord::Migration[4.2]
   def up
     [
       ['Test 1', 4 * 60 + 37, Date.new(2012, 11, 17, 2012), false, 'abcde'],
