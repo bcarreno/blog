@@ -13,6 +13,7 @@ ruby '2.3.7'
 gem 'minitest', '~> 5.1'
 
 gem 'rails', '5.0.7'
+gem 'puma', '~> 3.7'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
