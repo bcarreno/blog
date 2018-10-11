@@ -12,7 +12,7 @@ ruby '2.3.7'
 # then adding the following line
 gem 'minitest', '~> 5.1'
 
-gem 'rails', '5.0.7'
+gem 'rails', '5.1.0'
 gem 'puma', '~> 3.7'
 gem 'sass-rails'
 gem 'uglifier'
