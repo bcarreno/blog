@@ -10,11 +10,11 @@ class MessagesControllerTest < ActionController::TestCase
     assert_equal "I'll get back to you as soon as I can, thanks.", flash[:notice]
 
     message_email = ActionMailer::Base.deliveries.last
-    assert_equal 'New message',        message_email.subject
-    assert_equal 'target@example.com', message_email.to[0]
-    assert_equal 'origin@example.com', message_email.from[0]
-    assert_match(/test@example.com/,   message_email.body.to_s)
-    assert_match(/This is the body/,   message_email.body.to_s)
+    assert_equal 'Contact through carreno.me', message_email.subject
+    assert_equal 'target@example.com',         message_email.to[0]
+    assert_equal 'origin@example.com',         message_email.from[0]
+    assert_match(/test@example.com/,           message_email.body.to_s)
+    assert_match(/This is the body/,           message_email.body.to_s)
   end
 
   test 'post create insufficient params' do

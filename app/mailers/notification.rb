@@ -7,6 +7,6 @@ class Notification < ActionMailer::Base
 
   def new_message(message)
     @message = message
-    mail(:subject => 'New message')
+    mail(:subject => 'Contact through carreno.me')
   end
 end
