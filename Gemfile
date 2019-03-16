@@ -1,18 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.7'
 
-#
-# rails has a bug with minitest 5.10.
-# Fixed with Rails 5.2
-# workaround is to downgrade to minitest 5.1
-# there are 2 changes
-# first in Gemfile.lock
-# -    minitest (5.11.3)
-# +    minitest (5.1.0)
-# then adding the following line
-gem 'minitest', '~> 5.1'
-
-gem 'rails', '5.1.0'
+gem 'rails', '5.2.0'
 gem 'puma', '~> 3.7'
 gem 'sass-rails'
 gem 'uglifier'
