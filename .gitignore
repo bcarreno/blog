@@ -15,7 +15,10 @@
 /tmp
 
 .byebug_history
-/config/*.yml
+# Ignore master key for decrypting credentials
+/config/master.key
+# in theory you can push config/credentials.yml.enc, but I prefer not to
+/config/*.enc
 /extras
 /private
 /public/assets

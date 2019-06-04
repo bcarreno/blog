@@ -47,6 +47,9 @@ module Blog4
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.action_mailer.default_options = {from: secrets.notifications_from, to: secrets.notifications_to}
+    config.action_mailer.default_options = {
+      from: Rails.application.credentials[Rails.env.to_sym][:notifications_from],
+      to: Rails.application.credentials[Rails.env.to_sym][:notifications_to],
+    }
   end
 end

@@ -1,0 +1,20 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: blog4_development
+  pool: 5
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: blog4_test
+  pool: 5
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: blog
+  pool: 5
+  password:

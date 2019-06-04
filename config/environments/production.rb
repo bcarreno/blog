@@ -69,4 +69,7 @@ Blog4::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # We've moved from secrets to credentials
+  config.require_master_key = true
 end
