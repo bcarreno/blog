@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.4.6'
 
 gem 'rails'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.3'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
