@@ -146,7 +146,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    redcarpet (3.4.0)
+    redcarpet (3.5.1)
     ruby_parser (3.11.0)
       sexp_processor (~> 4.9)
     sass (3.6.0)
